@@ -1,0 +1,22 @@
+{
+  "name": "ng-rt",
+  "version": "1.0.0",
+  "description": "RT internal course for Angular and STK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreasLoukakis/rt-ng.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "Andreas Loukakis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreasLoukakis/rt-ng/issues"
+  },
+  "homepage": "https://github.com/AndreasLoukakis/rt-ng#readme"
+}

@@ -3,6 +3,14 @@ TOC is a work in progress
 ***
 # Table of Contents
 
+## 0. How to use this repo
+- Create and cd in a local directory `mkdir rtng && cd rtng`
+- Clone this repo `git clone https://github.com/AndreasLoukakis/rt-ng.git`
+- If git is not an option, go to [github repo](https://github.com/AndreasLoukakis/rt-ng) and download a zip of the repo. However, there will be some inconvenience to switch from / to various branches so try to have git available.
+- Each part will have course contents in an md format and two branches: xCourse-start and xCourse-finished
+- We should start with the x-start branch and move to the x-finish branch during the course
+- Each course will also include an extras.md with proposed exercises and recommended reading. The exercises will be discussed at the beginning of each next course.
+
 ## 1. Setup and build a new app
  - Dependencies
     - NodeJS
@@ -107,5 +115,6 @@ TOC is a work in progress
     - Stubs
     - Directives
     - Async
+- E2E is out of scope, just some basics
 
-## 6. We have a new NBG demand...
+## 6. We have a new client demand...

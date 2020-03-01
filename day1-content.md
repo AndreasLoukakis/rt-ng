@@ -97,15 +97,18 @@ Hint: each feature should exist under a seperate module.
 - ### pipes
     Pipes, again, are classes decorated with @Pipe(). The serve as a way to make display transformations in the html. There are several built-in pipes and ofcourse we can create our own. Common examples are date display, currency or more complex cases when we need to repeat some custom presentation logic.
 
-- decorators
+- ### decorators
     Decorators exist in Typescript and angular is heavily using them to apply custom logic to almost every framework construct.
 
     There are a few kinds of decorators, like class or method etc and it is a very useful concept to apply when repeatable logic needs to be applied and class inheritence is not the best approach.
 
     In practice, the are just (higher order) functions, that receive a subject (like a class) and maybe some other properties and extends it's functionality.
 
-- interceptors
-- Interfaces / enums / tuples
+- ### interceptors
+    They are a way - provided by the framework - to intercept (obviously) globally all http requests, possibly do something with them or trigger some other logic and give back control to the normal pipeline.
+
+    It is a class, implementing HttpInterceptor interface.
+- ### Interfaces / enums / tuples
     
     Nothing angular-specific to mention here, other than we can and we should have everything possible typed. The 'any' type should be considered as technical debt.
 

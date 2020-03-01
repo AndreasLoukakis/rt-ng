@@ -17,8 +17,8 @@ TOC is a work in progress
     - Angular CLI
     - Dev tools: ES LINT, Prettier
     - CSS: Patternfly 4 (Base CSS of STK so lets get familiar with it)
+ - angular cli commands
  - angular framework overview
- - angular cli commands: not just for skeleton and packaging
  - app bootstraping
  - building blocks
     - modules

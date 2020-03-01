@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@patternfly/patternfly/patternfly.css",
               "src/styles.scss"
             ],
             "scripts": []

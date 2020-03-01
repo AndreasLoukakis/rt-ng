@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/AndreasLoukakis/rt-ng/issues"
   },
-  "homepage": "https://github.com/AndreasLoukakis/rt-ng#readme"
+  "homepage": "https://github.com/AndreasLoukakis/rt-ng#readme",
+  "dependencies": {
+    "@patternfly/patternfly": "^2.66.0"
+  }
 }

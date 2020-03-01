@@ -19,7 +19,7 @@ Note: Using a linter and an autoformatter (like ESLint and Prettier) is a huge w
 ## Building a new app
  - Let's review available [angular cli](https://cli.angular.io/) (ng cli) commands:
     - ng [command] [command params]
-    - most commonn commands:
+    - most common commands:
         - new (create new application) [app name]
         - generate (or just g) [component/service/directive...] [path/name]
         - add [package name] (adds a package like npm install package but does a few more things to congigure it, depending on it's schematics)
@@ -29,7 +29,7 @@ Note: Using a linter and an autoformatter (like ESLint and Prettier) is a huge w
     - Which stylesheet format would you like to use? (SCSS)
 - Move to the newly created directory and `ng serve` or `ng serve -o` to automatically open a browser
 
-## An overview or our app and the framework
+## An overview of or our app and the framework
 - package.json: Our project metadata. Some used by Node, some from npm to resolve dependencies.
 - angular.json: Configuration defaults for build and development tools provided by the Angular CLI
 - Other config that needs mentioning: tsconfig, karma.conf, tslint
@@ -119,5 +119,7 @@ The UI shell is a feature on it's own and should contain it's own logic, state, 
 And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.
 
 The content of the componens can be dummy text or just empty if you prefer.
+
+This module will be a part of the rendered view at all times, so it doesn't make any sense to consider lazy-loading it, in case you were thinking about it (we'll talk about lazy loading while developing the next module).
 
 You can use custom html and css if you wish, but our implementation will be based on patternfly. A good example is [this page layout](https://www.patternfly.org/v4/documentation/react/demos/pagelayout/default-nav)

@@ -1,4 +1,4 @@
-# welcome to day 1 of rt-ng
+# IA2 Angular course - day 1
 
 ## Dependencies setup
  - [NodeJS](https://nodejs.org/en/) >= 10.13.0
@@ -107,7 +107,17 @@ Hint: each feature should exist under a seperate module.
 - interceptors
 - Interfaces / enums / tuples
     
-    Nothing angular-specific to mention here, other than we can and we should have everything possible typed. The 'any' type will be a technical debt.
+    Nothing angular-specific to mention here, other than we can and we should have everything possible typed. The 'any' type should be considered as technical debt.
 
 ## Buildinng a layout shell
+Remember how the router resolves a component and this is rendered in the router outlet? We now need to create a UI shell of some sort, so that it has a left menu panel, a header and a footer and each menu route renders a component in the main area.
 
+The UI shell is a feature on it's own and should contain it's own logic, state, components and services. It would be great if it was reusable also. So, we're going to create a shell module.
+
+![Diagram: app bootstraping](./diagrams/3.shell_module.svg)
+
+And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.
+
+The content of the componens can be dummy text or just empty if you prefer.
+
+You can use custom html and css if you wish, but our implementation will be based on patternfly. A good example is [this page layout](https://www.patternfly.org/v4/documentation/react/demos/pagelayout/default-nav)

@@ -1,4 +1,5 @@
 ## Exercises
+- Build a UI shell module, as described in day1-content based on [this patternfly page layout](https://www.patternfly.org/v4/documentation/react/demos/pagelayout/default-nav). The content should be ignored or have any dummy text.
 
 ## Recommended reading / links mentioned
 - [Patternfly CSS](https://www.patternfly.org/v4/documentation/core/overview/training) **Note: We are using the html (not the react obviously) version

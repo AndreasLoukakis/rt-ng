@@ -58,7 +58,7 @@ There are some css issues to solve here, since the rendered html actually contai
 
 host represents the component element and we are instructing css to ignore it and only apply rules to it's contents.
 
-The app-main component, just needs to include `<router-outlet></router-outlet>` in the right place. But when we include it, you'll notice there's something wrong... since we're using the router outlet in ui-shell, we need to import angular router in the module. We'll talk about module dependencies and imports strategy later on, when we start dealing with lazy loaded modules and things get a little more complex in this aspect.
+The app-main component, just needs to include `<router-outlet></router-outlet>` in the right place. But when we include it, you'll notice there's something wrong... since we're using the router outlet in ui-shell, we need to import angular RouterModule in the module. We'll talk about module dependencies and imports strategy later on, when we start dealing with lazy loaded modules and things get a little more complex in this aspect.
 
 Just a little clean up in the html to remove unnecessary content and we are ready. We now have a shell, ready to render any route in the app-main comonent!
 

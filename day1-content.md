@@ -115,6 +115,12 @@ Hint: each feature should exist under a seperate module.
     
     Nothing angular-specific to mention here, other than we can and we should have everything possible typed. The 'any' type should be considered as technical debt.
 
+## folder structure
+    Besides being a personal preference, angular guidelines suggest to use a [Folders-by-feature structure](https://angular.io/guide/styleguide#folders-by-feature-structure).
+    There are many reasons that lead to this preference which works better to medium - complex apps than smaller ones (IMHO), I can't explain it any better than the above link.
+
+    Ofcourse, this by itself is not enough guidance for a big and complex app. We should make decissions based on how our app business is (or should be) contained in modules, under what concept could a group of modules exist (features, admin, renderings, shared...) or whatever makes sense for any strategy we come up with.
+
 ## Buildinng a layout shell
 Remember how the router resolves a component and this is rendered in the router outlet? We now need to create a UI shell of some sort, so that it has a left menu panel, a header and a footer and each menu route renders a component in the main area.
 

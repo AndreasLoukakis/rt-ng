@@ -69,3 +69,13 @@ Our inbox will be a classic MiTOS inbox, with a list of applications that might 
 Inbox will be rendered in it's own url, have it's own logic and components so it's  a good candidate for a lazy loaded module.
 
 Let's do that, create an inbox wraper to see the differences of a lazy loaded module and then discuss about how we should structure it's pieces.
+
+`ng g m inbox --route inbox --module app.module`
+
+This did some more things than just create a new module: It also created an inbox routing module, a default component the route will resolve at and added a new LAZY loaded route in our root routing module!
+
+(Since this is our first route, we also need to create a default route. And while we're at it, let's also add a default route link and an inbox link to our sidebar)
+
+We can already go to /inbox and see what happens...
+
+Check how the new inbox module, is loaded when the url is pointing to it only. Otherwise, this code will never reach the client browser (and that's great for our bundle size)...

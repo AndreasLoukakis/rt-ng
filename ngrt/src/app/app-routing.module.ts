@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'inbox', loadChildren: () => import('./inbox/inbox.module').then(m => m.InboxModule) },
+  { path: '', redirectTo: '/inbox', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'inbox', loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule) },
 ];
 
 @NgModule({

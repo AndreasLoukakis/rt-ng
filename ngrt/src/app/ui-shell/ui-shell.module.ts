@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ShellWrapperComponent } from './components/shell-wrapper/shell-wrapper.component';
 import { HeaderComponent } from './components/presentation/header/header.component';
@@ -7,12 +7,11 @@ import { SidebarComponent } from './components/presentation/sidebar/sidebar.comp
 import { MainComponent } from './components/presentation/main/main.component';
 
 
-
 @NgModule({
   declarations: [ShellWrapperComponent, HeaderComponent, SidebarComponent, MainComponent],
   imports: [
     CommonModule,
-    Router
+    RouterModule
   ],
   exports: [ShellWrapperComponent]
 })

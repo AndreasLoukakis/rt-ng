@@ -64,18 +64,46 @@ Just a little clean up in the html to remove unnecessary content and we are read
 
 ## Creating our first feature: Inbox
 
+Before starting the inbox, let's do 2 things:
+
+- Create a features folder that will host all our ...features (remember the structure guidelines?)
+- Create a demo component (lets call it home), just to have something in our default route (and create this route)
+
+`ng g c home`
+
+and add these in app.routing module
+
+```html
+{ path: '', redirectTo: '/inbox', pathMatch: 'full' },
+{ path: 'home', component: HomeComponent },
+```
+Done, let's start with the inbox.
+
 Our inbox will be a classic MiTOS inbox, with a list of applications that might have different layout semantics (eg different backgound for x type of application). We also need them to be expandable, and display some extra info (we will ignore other common features, like pagination, filters etc).
 
 Inbox will be rendered in it's own url, have it's own logic and components so it's  a good candidate for a lazy loaded module.
 
 Let's do that, create an inbox wraper to see the differences of a lazy loaded module and then discuss about how we should structure it's pieces.
 
-`ng g m inbox --route inbox --module app.module`
+`ng g m features/inbox --route inbox --module app.module`
 
 This did some more things than just create a new module: It also created an inbox routing module, a default component the route will resolve at and added a new LAZY loaded route in our root routing module!
 
 (Since this is our first route, we also need to create a default route. And while we're at it, let's also add a default route link and an inbox link to our sidebar)
 
+`<a [routerLink]="['/inbox']" routerLinkActive="active" class="pf-c-nav__link pf-m-current">Inbox</a>`
+
 We can already go to /inbox and see what happens...
 
-Check how the new inbox module, is loaded when the url is pointing to it only. Otherwise, this code will never reach the client browser (and that's great for our bundle size)...
+Check (network tab) how the new inbox module, is loaded when the url is pointing to it only. Otherwise, this code will never reach the client browser (and that's great for our bundle size)...
+
+Sounds good? lets give our module structure some design:
+
+- It will surely have a service, to get data
+- We will need a List component. Definatelly.
+- We will also need a List item component. Maybe more than one? we'll see
+- We will probably need another componnent for the extra details. Let's call it item details.
+
+I think we should make all of them just dumb, rendering components and just pass them some data to render. All of the logic could be handled from the (already existing) inbox.component.
+
+![Diagram: inbox module](./diagrams/InboxModule.svg)

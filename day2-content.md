@@ -58,14 +58,111 @@ There are some css issues to solve here, since the rendered html actually contai
 
 host represents the component element and we are instructing css to ignore it and only apply rules to it's contents.
 
-The app-main component, just needs to include `<router-outlet></router-outlet>` in the right place. But when we include it, you'll notice there's something wrong... since we're using the router outlet in ui-shell, we need to import angular RouterModule in the module. We'll talk about module dependencies and imports strategy later on, when we start dealing with lazy loaded modules and things get a little more complex in this aspect.
+The app-main component, just needs to include `<router-outlet></router-outlet>` in the right place. But when we include it, you'll notice there's something wrong... since we're using the router outlet in ui-shell, we need to import angular router in the module. We'll talk about module dependencies and imports strategy later on, when we start dealing with lazy loaded modules and things get a little more complex in this aspect.
 
 Just a little clean up in the html to remove unnecessary content and we are ready. We now have a shell, ready to render any route in the app-main comonent!
 
 ## Creating our first feature: Inbox
+
+Before starting the inbox, let's do 2 things:
+
+- Create a features folder that will host all our ...features (remember the structure guidelines?)
+- Create a demo component (lets call it home), just to have something in our default route (and create this route)
+
+`ng g c home`
+
+and add these in app.routing module
+
+```html
+{ path: '', redirectTo: '/inbox', pathMatch: 'full' },
+{ path: 'home', component: HomeComponent },
+```
+Done, let's start with the inbox.
 
 Our inbox will be a classic MiTOS inbox, with a list of applications that might have different layout semantics (eg different backgound for x type of application). We also need them to be expandable, and display some extra info (we will ignore other common features, like pagination, filters etc).
 
 Inbox will be rendered in it's own url, have it's own logic and components so it's  a good candidate for a lazy loaded module.
 
 Let's do that, create an inbox wraper to see the differences of a lazy loaded module and then discuss about how we should structure it's pieces.
+
+`ng g m features/inbox --route inbox --module app.module`
+
+This did some more things than just create a new module: It also created an inbox routing module, a default component the route will resolve at and added a new LAZY loaded route in our root routing module!
+
+(Since this is our first route, we also need to create a default route. And while we're at it, let's also add a default route link and an inbox link to our sidebar)
+
+`<a [routerLink]="['/inbox']" routerLinkActive="active" class="pf-c-nav__link pf-m-current">Inbox</a>`
+
+We can already go to /inbox and see what happens...
+
+Check (network tab) how the new inbox module, is loaded when the url is pointing to it only. Otherwise, this code will never reach the client browser (and that's great for our bundle size)...
+
+Sounds good? lets give our module structure some design:
+
+- It will surely have a service, to get data
+- We will need a List component. Definatelly.
+- We will also need a List item component. Maybe more than one? we'll see
+- We will probably need another componnent for the extra details. Let's call it item details.
+
+I think we should make all of them just dumb, rendering components and just pass them some data to render. All of the logic could be handled from the (already existing) inbox.component.
+
+![Diagram: inbox module](./diagrams/InboxModule.svg)
+
+`ng g s features/inbox/services/task-data`
+
+`ng g c features/inbox/components/list`
+
+`ng g c features/inbox/components/list-item`
+
+`ng g c features/inbox/components/list-item-details`
+
+What would be great now, is if we could have a sample layout from patternfly, which looks very close to what we actually want... [tadaaaa...](https://www.patternfly.org/v4/documentation/core/demos/datalist/expandable-demo)
+
+You know the drill, we'll take the (list part of the) content, put it initially in the inbox.component and take it from there.
+
+Cool. We should now have a list with one item with random data. Next steps:
+
+- get actual data
+- wire up bindings, inputs etc
+- make the item details toggler actually toggle its content
+
+Since we'll be using http, we should add HttpClientModule to the app module too
+
+For data, we'll use star wars instead of deals for a change. So, let's set up the data service:
+
+The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
+
+
+We'll also need a Movie interface, I'll keep it in the service file for convenience. You should not.
+
+```javascript
+export interface Movie {
+  title: string;// -- The title of this film
+  episode_id: number;// -- The episode number of this film.
+  opening_crawl: string;// -- The opening paragraphs at the beginning of this film.
+  director: string;// -- The name of the director of this film.
+  producer: string;// -- The name(s) of the producer(s) of this film. Comma separated.
+  release_date: string;// -- The ISO 8601 date format of film release at original creator country.
+  species: [];// -- An array of species resource URLs that are in this film.
+  starships: [];// -- An array of starship resource URLs that are in this film.
+  vehicles: [];// -- An array of vehicle resource URLs that are in this film.
+  characters: [];// -- An array of people resource URLs that are in this film.
+  planets: [];// -- An array of planet resource URLs that are in this film.
+  url: string;// -- the hypermedia URL of this resource.
+  created: string;// -- the ISO 8601 date format of the time that this resource was created.
+  edited: string;//
+}```
+
+Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
+
+We'll use title, episode_id, director and producer in main item view and the movie opening crawl in details view.
+
+Setup Input in the components and pass data from each parent to child as needed.
+
+Great. Now, what do we need to do to actually use the details toggler? 
+
+There is a class in the list item, `pf-m-expanded` which should define the expanded state.
+
+It should be ease to use a property in the item component to enable / disable this class and the details visibility...
+
+Also, maybe we could use a [loader]{https://www.patternfly.org/v4/documentation/core/components/spinner} to show while the items are loading...

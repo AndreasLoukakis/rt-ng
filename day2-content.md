@@ -126,6 +126,8 @@ Cool. We should now have a list with one item with random data. Next steps:
 - wire up bindings, inputs etc
 - make the item details toggler actually toggle its content
 
+Since we'll be using http, we should add HttpClientModule to the app module too
+
 For data, we'll use star wars instead of deals for a change. So, let's set up the data service:
 
 The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
@@ -153,6 +155,13 @@ export interface Movie {
 
 Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
 
-We'll use title, episode_id, director and producer in main item view and the rest in details view.
+We'll use title, episode_id, director and producer in main item view and the movie opening crawl in details view.
 
 Setup Input in the components and pass data from each parent to child as needed.
+
+Great. Now, what do we need to do to actually use the details toggler? 
+
+There is a class in the list item, `pf-m-expanded` which should define the expanded state.
+
+It should be ease to use a property in the item component to enable / disable this class and the details visibility...
+

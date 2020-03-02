@@ -51,12 +51,10 @@ TOC is a work in progress
     - RxJS helpers via pipe
 - Passing data between components
 - It works. Can we do better?
-    - Make it it's own module
-    - Lazy loading
     - route resolver
-    - Intro to STK
-    - refactor to stk-lists
-        - note: stk is WIP and not a public library
+- Intro to STK
+- refactor to stk-lists
+    - note: stk is WIP and not a public library
 
 
 

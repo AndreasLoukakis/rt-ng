@@ -1,0 +1,52 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/ngrt/dist
+/ngrt/tmp
+/ngrt/out-tsc
+# Only exists if Bazel was run
+/ngrt/bazel-out
+
+# dependencies
+/ngrt/node_modules
+
+# profiling files
+ngrt/chrome-profiler-events*.json
+ngrt/speed-measure-plugin*.json
+
+# IDEs and editors
+/ngrt//.idea
+ngrt/.project
+ngrt/.classpath
+ngrt/.c9/
+ngrt/*.launch
+ngrt/.settings/
+ngrt/*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+ngrt/.vscode/*
+ngrt/!.vscode/settings.json
+ngrt/!.vscode/tasks.json
+ngrt/!.vscode/launch.json
+ngrt/!.vscode/extensions.json
+ngrt/.history/*
+
+# misc
+ngrt/.sass-cache
+ngrt/connect.lock
+ngrt/coverage
+ngrt/libpeerconnection.log
+ngrtnpm-debug.log
+ngrtyarn-error.log
+ngrttestem.log
+ngrt/typings
+
+# System Files
+.DS_Store
+Thumbs.db

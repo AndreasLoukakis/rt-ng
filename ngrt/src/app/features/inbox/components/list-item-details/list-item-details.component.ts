@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Movie } from '../../services/task-data.service';
 
 @Component({
   selector: 'app-list-item-details',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListItemDetailsComponent implements OnInit {
 
+  @Input() movie: Movie;
   constructor() { }
 
   ngOnInit(): void {

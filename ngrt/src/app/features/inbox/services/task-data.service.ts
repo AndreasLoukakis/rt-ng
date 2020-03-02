@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class TaskDataService {
   constructor(private http: HttpClient) { }
 
   getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.apiURL);
+    return this.http.get<{ results: Movie[] }>(this.apiURL).pipe( map(response => response.results));
   }
 }
 

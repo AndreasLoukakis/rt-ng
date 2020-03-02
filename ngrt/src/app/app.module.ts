@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UiShellModule } from './ui-shell/ui-shell.module';
 
@@ -15,7 +16,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UiShellModule
+    UiShellModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

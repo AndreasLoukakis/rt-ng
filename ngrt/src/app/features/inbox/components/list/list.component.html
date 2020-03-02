@@ -1,3 +1,12 @@
-<ul *ngIf="movies$ | async as movies" class="pf-c-data-list" role="list">
+<ul *ngIf="movies$ | async as movies;else loading;" class="pf-c-data-list" role="list">
   <app-list-item *ngFor="let movie of movies" [movie]="movie"></app-list-item>
 </ul>
+<ng-template #loading>
+  <div class="pf-u-text-align-center">
+    <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+      <span class="pf-c-spinner__clipper"></span>
+      <span class="pf-c-spinner__lead-ball"></span>
+      <span class="pf-c-spinner__tail-ball"></span>
+    </span>
+  </div>
+</ng-template>

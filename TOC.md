@@ -111,8 +111,8 @@ TOC is a work in progress
     - Testing events
 - Integration tests
     - Setup
-    - Bindings
-    - Dependencies
+    - Bindingsgit
+    - Depend
     - Stubs
     - Directives
     - Async

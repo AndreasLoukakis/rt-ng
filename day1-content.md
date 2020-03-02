@@ -107,6 +107,9 @@ Hint: each feature should exist under a seperate module.
 - ### interceptors
     They are a way - provided by the framework - to intercept (obviously) globally all http requests, possibly do something with them or trigger some other logic and give back control to the normal pipeline.
 
+- ### guards
+    They are part of angular router and used for controlling access at various stages of navigation. They have various methods they can implement and can be helpful in several ways: CanActivate, CanDeactivate, CanActivateChild, ...
+
     It is a class, implementing HttpInterceptor interface.
 - ### Interfaces / enums / tuples
     

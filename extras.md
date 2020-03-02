@@ -8,3 +8,4 @@
 - [package.json schema definition](https://docs.npmjs.com/files/package.json)
 - [some advanced angular concepts, including how providers can be used in an advanced way](https://www.youtube.com/watch?v=EoSn8qASqQA)
 - [Interceptor examples](https://medium.com/angular-in-depth/top-10-ways-to-use-interceptors-in-angular-db450f8a62d6)
+- [Guard examples](https://alligator.io/angular/route-guards/)

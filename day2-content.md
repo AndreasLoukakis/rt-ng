@@ -107,3 +107,52 @@ Sounds good? lets give our module structure some design:
 I think we should make all of them just dumb, rendering components and just pass them some data to render. All of the logic could be handled from the (already existing) inbox.component.
 
 ![Diagram: inbox module](./diagrams/InboxModule.svg)
+
+`ng g s features/inbox/services/task-data`
+
+`ng g c features/inbox/components/list`
+
+`ng g c features/inbox/components/list-item`
+
+`ng g c features/inbox/components/list-item-details`
+
+What would be great now, is if we could have a sample layout from patternfly, which looks very close to what we actually want... [tadaaaa...](https://www.patternfly.org/v4/documentation/core/demos/datalist/expandable-demo)
+
+You know the drill, we'll take the (list part of the) content, put it initially in the inbox.component and take it from there.
+
+Cool. We should now have a list with one item with random data. Next steps:
+
+- get actual data
+- wire up bindings, inputs etc
+- make the item details toggler actually toggle its content
+
+For data, we'll use star wars instead of deals for a change. So, let's set up the data service:
+
+The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
+
+
+We'll also need a Movie interface, I'll keep it in the service file for convenience. You should not.
+
+```javascript
+export interface Movie {
+  title: string;// -- The title of this film
+  episode_id: number;// -- The episode number of this film.
+  opening_crawl: string;// -- The opening paragraphs at the beginning of this film.
+  director: string;// -- The name of the director of this film.
+  producer: string;// -- The name(s) of the producer(s) of this film. Comma separated.
+  release_date: string;// -- The ISO 8601 date format of film release at original creator country.
+  species: [];// -- An array of species resource URLs that are in this film.
+  starships: [];// -- An array of starship resource URLs that are in this film.
+  vehicles: [];// -- An array of vehicle resource URLs that are in this film.
+  characters: [];// -- An array of people resource URLs that are in this film.
+  planets: [];// -- An array of planet resource URLs that are in this film.
+  url: string;// -- the hypermedia URL of this resource.
+  created: string;// -- the ISO 8601 date format of the time that this resource was created.
+  edited: string;//
+}```
+
+Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
+
+We'll use title, episode_id, director and producer in main item view and the rest in details view.
+
+Setup Input in the components and pass data from each parent to child as needed.

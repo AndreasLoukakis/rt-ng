@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Movie } from './../../services/task-data.service';
 
 @Component({
   selector: 'app-list',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  @Input() movies$: Observable<Movie[]>;
   constructor() { }
 
   ngOnInit(): void {

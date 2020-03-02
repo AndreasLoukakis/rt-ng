@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TaskDataService, Movie } from './services/task-data.service';
 
 @Component({
   selector: 'app-inbox',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InboxComponent implements OnInit {
 
-  constructor() { }
+  movies$: Observable<Movie[]>;
+  constructor(private service: TaskDataService) { }
 
   ngOnInit(): void {
+    this.movies$ = this.service.getMovies();
   }
 
 }

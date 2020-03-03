@@ -150,8 +150,9 @@ export interface Movie {
   planets: [];// -- An array of planet resource URLs that are in this film.
   url: string;// -- the hypermedia URL of this resource.
   created: string;// -- the ISO 8601 date format of the time that this resource was created.
-  edited: string;//
-}```
+  edited: string;
+}
+```
 
 Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
 
@@ -166,3 +167,10 @@ There is a class in the list item, `pf-m-expanded` which should define the expan
 It should be ease to use a property in the item component to enable / disable this class and the details visibility...
 
 Also, maybe we could use a [loader]{https://www.patternfly.org/v4/documentation/core/components/spinner} to show while the items are loading...
+
+One more thing. We need all episodes not directed by George Lucas to have a different color. Or, in a more general approach, we want some layout behavior, driven by our data.
+
+We can surely add an ngClass in our item template, with a condition to check the director. This would work:
+
+`[ngClass]="{'some-class': item.director === 'George Lucas'}"` and then use some css to change the background or something.
+

@@ -51,8 +51,6 @@ TOC is a work in progress
     - RxJS helpers via pipe
 - Passing data between components
 - It works. Can we do better?
-    - Make it it's own module
-    - Lazy loading
     - route resolver
     - Intro to STK
     - refactor to stk-lists
@@ -63,7 +61,7 @@ TOC is a work in progress
 ## 3. Create a basic rendering
  - Angular forms
     - Reactive
-    - Template driven. Not using them.
+    - Template driven. We choose reactive.
     - Bindings, validations, practices
  - A lazy loaded module with CLI
  - Feature design & structure

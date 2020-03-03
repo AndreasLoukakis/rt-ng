@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+    console.log('executing script');
     checkWip();
 
     $("body").on('DOMSubtreeModified', ".current", function(event) {

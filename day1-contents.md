@@ -130,7 +130,7 @@ The UI shell is a feature on it's own and should contain it's own logic, state, 
 
 ![Diagram: app bootstraping](./diagrams/3.shell_module.svg)
 
-And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.
+And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.git 
 
 The content of the componens can be dummy text or just empty if you prefer.
 

@@ -150,9 +150,8 @@ export interface Movie {
   planets: [];// -- An array of planet resource URLs that are in this film.
   url: string;// -- the hypermedia URL of this resource.
   created: string;// -- the ISO 8601 date format of the time that this resource was created.
-  edited: string;
-}
-```
+  edited: string;//
+}```
 
 Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
 
@@ -172,5 +171,12 @@ One more thing. We need all episodes not directed by George Lucas to have a diff
 
 We can surely add an ngClass in our item template, with a condition to check the director. This would work:
 
-`[ngClass]="{'some-class': item.director === 'George Lucas'}"` and then use some css to change the background or something.
+`[ngClass]="{'some-class': item.director === 'George Lucas'}"` and then use some css to change the background or something. But we'd like to avoid applying logic inside the html and we want reusable pieces of code, if possible. Also, chances are, client will come up with more conditional checks and more behavior... it will become hard to read and maintain (you all knonw what I mean!)
+
+I thing an attribute directive would be a much better solution for this job. Let's see how we can do this.
+
+`ng g d features/inbox/directives/tpl-modifier`
+
+There are several ways to access and modify host element properties, let's discuss that and fininsh up with the directive.
+
 

@@ -177,5 +177,6 @@ I thing an attribute directive would be a much better solution for this job. Let
 
 `ng g d features/inbox/directives/tpl-modifier`
 
-For start, let's assign an input to the directive to get access to the movie item, because that's what we'll be using.
+There are several ways to access and modify host element properties, let's discuss that and fininsh up with the directive.
+
 

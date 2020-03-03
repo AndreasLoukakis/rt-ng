@@ -14,7 +14,6 @@ export class ListItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('movie is ', this.movie)
   }
 
   toggleDetails() {

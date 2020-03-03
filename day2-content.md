@@ -166,3 +166,16 @@ There is a class in the list item, `pf-m-expanded` which should define the expan
 It should be ease to use a property in the item component to enable / disable this class and the details visibility...
 
 Also, maybe we could use a [loader]{https://www.patternfly.org/v4/documentation/core/components/spinner} to show while the items are loading...
+
+One more thing. We need all episodes not directed by George Lucas to have a different color. Or, in a more general approach, we want some layout behavior, driven by our data.
+
+We can surely add an ngClass in our item template, with a condition to check the director. This would work:
+
+`[ngClass]="{'some-class': item.director === 'George Lucas'}"` and then use some css to change the background or something. But we'd like to avoid applying logic inside the html and we want reusable pieces of code, if possible. Also, chances are, client will come up with more conditional checks and more behavior... it will become hard to read and maintain (you all knonw what I mean!)
+
+I thing an attribute directive would be a much better solution for this job. Let's see how we can do this.
+
+`ng g d features/inbox/directives/tpl-modifier`
+
+For start, let's assign an input to the directive to get access to the movie item, because that's what we'll be using.
+

@@ -27,6 +27,10 @@ Note: Using a linter and an autoformatter (like ESLint and Prettier) is a huge w
 - Create the app: `ng new ngrt`
     - Would you like to add Angular routing? (Y)
     - Which stylesheet format would you like to use? (SCSS)
+- Add prettier and patternfly `npm i -D prettier --save-dev` and `npm i @patternfly/patternfly --save`
+
+    - prettier and tslint have a conflict in default quote preferences, so it will be better if you add a .prettierrc in src with { "singleQuotes": true }
+
 - Move to the newly created directory and `ng serve` or `ng serve -o` to automatically open a browser
 
 ## An overview of or our app and the framework
@@ -62,6 +66,9 @@ In practice, modules are an efficient way to organize, seperate and reuse functi
 
 Hint: each feature should exist under a seperate module.
 
+(before moving on, let's create a playground folder to hold our experiments. We will create any random stuff we don't want in there. We will also need a component - so that we can see what we do - and a route to render this component)
+`ng g c /playground/play`
+
 - ### directives
     - **components**:
         
@@ -75,7 +82,7 @@ Hint: each feature should exist under a seperate module.
     
         In general, I prefer to seperate components in 2 main categories: presentation components, that have no logic and only get data as input and display them and "smart" components, that have access to other application services and pass data to presentation components.
         
-        In complex apps, that might be an over simplification so we will need to apply more complex concepts.
+        In complex apps, that might be an over simplification so we might need to apply more complex concepts.
 
     - **structural**:
         
@@ -86,6 +93,8 @@ Hint: each feature should exist under a seperate module.
         Attribute directives are used as a reference to an element, in order to access it and apply some logic.
         
         It can be a custom attribute (eg `<h1 fooBar>Something</h1>` or we can use already existing element, like input and css or other element attributes (eg a directive with selector `input[type="text"]` would have access to all input of type text elements)
+
+        Let's make an example: `ng g d playground/attr-test` and do some tests with the play component.
 
 - ### services
     Services are a very broad term. They are a typescript class or function, annotated with the @Injectable() decorator and **should have a narrow and very well defined scope**
@@ -121,8 +130,6 @@ Hint: each feature should exist under a seperate module.
 
     Ofcourse, this by itself is not enough guidance for a big and complex app. We should make decissions based on how our app business is (or should be) contained in modules, under what concept could a group of modules exist (features, admin, renderings, shared...) or whatever makes sense for any strategy we come up with.
 
-
-
 ## Buildinng a layout shell
 Remember how the router resolves a component and this is rendered in the router outlet? We now need to create a UI shell of some sort, so that it has a left menu panel, a header and a footer and each menu route renders a component in the main area.
 
@@ -130,9 +137,9 @@ The UI shell is a feature on it's own and should contain it's own logic, state, 
 
 ![Diagram: app bootstraping](./diagrams/3.shell_module.svg)
 
-And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.git 
+And that will be your exercise. The solution is ready in day2-start branch but try to take it as far as you can on your own.
 
-The content of the componens can be dummy text or just empty if you prefer.
+The content of the components can be dummy text or just empty if you prefer.
 
 This module will be a part of the rendered view at all times, so it doesn't make any sense to consider lazy-loading it, in case you were thinking about it (we'll talk about lazy loading while developing the next module).
 

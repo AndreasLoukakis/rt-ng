@@ -3,14 +3,13 @@
 ***
 ## Prerequisites
  - Good understanding of Javascript (ES5)
- - Basics of angular 2+
+ - Basics of angular 2+ (any introductory course)
  - Basics of typescript & OOP
- - Have watched angular basics and typescript basics of ultimate angular (or other similar course)
 
 ## Good to have
  - Some experience with ES6+ (destructuring, arrow functions, let, const ...)
- - Some experience with RxJS Observables
- - Some experience with basic git commands
+ - Some experience with RxJS Observables (or similar implementation of the Observable pattern)
+ - Understanding of basic git commands
 
 ## Through the courses we will...
  - Quickly go through the basic parts of an Angular application:
@@ -37,10 +36,7 @@
  - [Learn RxJS](https://www.learnrxjs.io/)
  - [RX marbles](https://rxmarbles.com/)
 
-RXJS
-Store / redux / NGRX - other
-STKUI
-TDD / BDD
+
 
 
 

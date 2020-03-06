@@ -101,34 +101,49 @@ Hint: each feature should exist under a seperate module.
 
     Ideally, a component will serve the minimum code required to apply the user experience and delegate any other tasks to services (use via DI).
     
-    Like almost everything else, in services we'll be heavily using Observables (specifically RxJS). Promises are an option, but not suggested because 1. you'll be 'fighting' the framework flow, since RxJS is baked-in in all core parts and 2. Observables are a little harder to grasp at first but prove to be much more powerful eventually.
+    Like most parts, in services we'll be heavily using Observables (specifically RxJS). Promises are an option, but not suggested because 1. you'll be 'fighting' the framework flow, since RxJS is baked-in in core angular functionality and 2. Observables are a little harder to grasp at first but prove to be much more powerful eventually.
+
+    There is something worth mentioning at this point about all services:
+    - @Injectable, a decorator that marks the class as available to be provided and injected. This decorator, is being passed a config object like all injectables with a default value of `{providedIn: 'root'}`. 
+    
+    This is similar to adding the service in the **root** NgModule providers array and makes our service a singleton, available throughout the app. In a real app, where there are many modules with some complexity on the dependency tree, we could face problems and bugs with services not behaving as sigletons because they have been registered more than once. 
+
+    Let's make a playground service and consume some observable from it:
+
+    `ng g s playground/services/play`
+
+    We'll inject it in our play component and do a couple of basic examples.
 
 - ### pipes
     Pipes, again, are classes decorated with @Pipe(). The serve as a way to make display transformations in the html. There are several built-in pipes and ofcourse we can create our own. Common examples are date display, currency or more complex cases when we need to repeat some custom presentation logic.
 
+    The most commonly used pipe is async (written as `{{ foo | async }}` and it provides great convenience when consuming observables. Let's see a couple of examples in our play component, replacing register with async pipe.
+
 - ### decorators
-    Decorators exist in Typescript and angular is heavily using them to apply custom logic to almost every framework construct.
+    Decorators exist in Typescript and angular is heavily using them to apply framework logic (and allow us to easily pass configuration) to almost every framework construct.
 
-    There are a few kinds of decorators, like class or method etc and it is a very useful concept to apply when repeatable logic needs to be applied and class inheritence is not the best approach.
+    There are several [kinds of decorators](https://www.typescriptlang.org/docs/handbook/decorators.html) in Typescript, like class, method, property etc and it can be a very useful pattern when repeatable logic needs to be applied and class inheritence is not the best approach.
 
-    In practice, the are just (higher order) functions, that receive a subject (like a class) and maybe some other properties and extends it's functionality.
+    In practice, they are just (higher order) functions, that receive a subject (like a class) and maybe some other properties and extends it's functionality.
+
+    It's worth mentioning there's a proposal for [Javascript Decorators](https://github.com/tc39/proposal-decorators), currently in stage 2 (stage 3 means it's coming in the next version)
 
 - ### interceptors
     They are a way - provided by the framework - to intercept (obviously) globally all http requests, possibly do something with them or trigger some other logic and give back control to the normal pipeline.
 
 - ### guards
-    They are part of angular router and used for controlling access at various stages of navigation. They have various methods they can implement and can be helpful in several ways: CanActivate, CanDeactivate, CanActivateChild, ...
+    They are a class, implementing a specific (HttpInterceptor) interface and part of angular router. Used for controlling access at various stages of navigation. They have various methods they can implement and can be helpful in several ways: CanActivate, CanDeactivate, CanActivateChild, ...
 
-    It is a class, implementing HttpInterceptor interface.
 - ### Interfaces / enums / tuples
     
-    Nothing angular-specific to mention here, other than we can and we should have everything possible typed. The 'any' type should be considered as technical debt.
+    Nothing angular-specific to mention here, other than we can and we should have everything possibly typed. The 'any' type should be considered as technical debt. 
 
-## folder structure
-    Besides being a personal preference, angular guidelines suggest to use a [Folders-by-feature structure](https://angular.io/guide/styleguide#folders-by-feature-structure).
-    There are many reasons that lead to this preference which works better to medium - complex apps than smaller ones (IMHO), I can't explain it any better than the above link.
+### folder structure
 
-    Ofcourse, this by itself is not enough guidance for a big and complex app. We should make decissions based on how our app business is (or should be) contained in modules, under what concept could a group of modules exist (features, admin, renderings, shared...) or whatever makes sense for any strategy we come up with.
+Besides being a personal preference, angular guidelines suggest to use a [Folders-by-feature structure](https://angular.io/guide/styleguide#folders-by-feature-structure).
+There are many reasons that lead to this preference which works better to medium - complex apps than smaller ones (IMHO), I can't explain it any better than the above link.
+
+Ofcourse, this by itself is not enough guidance for a big and complex app. We should make decissions based on how our app business is (or should be) contained in modules, under what concept could a group of modules exist (features, admin, renderings, shared...) or whatever makes sense for any strategy we come up with.
 
 ## Buildinng a layout shell
 Remember how the router resolves a component and this is rendered in the router outlet? We now need to create a UI shell of some sort, so that it has a left menu panel, a header and a footer and each menu route renders a component in the main area.

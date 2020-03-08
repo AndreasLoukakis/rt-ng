@@ -142,7 +142,7 @@ Hint: each feature should exist under a seperate module.
 
     Structural directives, property binding, attribute binding, events, 2way binding, accessors, viewChild / viewChildren and valueChanges
 
-    Reacting to template changes: 2 way binding or $event? use change event, accessors or a reference and valueChanges?
+    Reacting to template changes: 2 way binding or $event? use change event, accessors or a reference and valueChanges? (note: lifecycle events) We should be discussing these extensively later on.
 
     Special note on @Input bindings, change detection and interpolation.
 

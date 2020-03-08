@@ -3,10 +3,17 @@
 <div>
   <div class="playing">This is inside playing class</div>
   <div>
-    <input type="text" placeholder="Just an input">
+    <input  [(ngModel)]="parentNgModelvar" type="text" #nameRef placeholder="Just an input">
+  </div>
+  <div>
+    <input  [(ngModel)]="parentObj.a" type="text" placeholder="Just an input">
   </div>
   <div>
     <input appAttrTest type="number" placeholder="A number input">
+  </div>
+  <div>
+    <strong>Child component</strong>
+    <app-child [parentVar]="parentNgModelvar" [parentObj]="parentObj"></app-child>
   </div>
 </div>
 </div>

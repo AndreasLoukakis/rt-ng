@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayComponent implements OnInit {
 
+  parentNgModelvar: string = 'init value';
+  parentObj = {
+    a: 'foo'
+  }
   constructor() { }
 
   ngOnInit(): void {

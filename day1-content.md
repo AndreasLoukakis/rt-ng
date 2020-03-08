@@ -136,7 +136,17 @@ Hint: each feature should exist under a seperate module.
 
 - ### Interfaces / enums / tuples
     
-    Nothing angular-specific to mention here, other than we can and we should have everything possibly typed. The 'any' type should be considered as technical debt. 
+    Nothing angular-specific to mention here, other than we can and we should have everything possibly typed. The 'any' type should be considered as technical debt.
+
+- ### Bindings
+
+    Structural directives, property binding, attribute binding, events, 2way binding, accessors, viewChild / viewChildren and valueChanges
+
+    Reacting to template changes: 2 way binding or $event? use change event, accessors or a reference and valueChanges?
+
+    Special note on @Input bindings, change detection and interpolation.
+
+![Diagram: app bootstraping](./diagrams/bindings.svg)
 
 ### folder structure
 

@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inbox', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, data: {title: 'Home', breadcrumbs: {label: 'Home'}} },
   { path: 'inbox', loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule) },
 ];
 

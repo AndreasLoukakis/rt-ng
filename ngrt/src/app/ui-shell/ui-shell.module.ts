@@ -5,10 +5,11 @@ import { ShellWrapperComponent } from './components/shell-wrapper/shell-wrapper.
 import { HeaderComponent } from './components/presentation/header/header.component';
 import { SidebarComponent } from './components/presentation/sidebar/sidebar.component';
 import { MainComponent } from './components/presentation/main/main.component';
+import { BreadcrumbsComponent } from './components/presentation/breadcrumbs/breadcrumbs.component';
 
 
 @NgModule({
-  declarations: [ShellWrapperComponent, HeaderComponent, SidebarComponent, MainComponent],
+  declarations: [ShellWrapperComponent, HeaderComponent, SidebarComponent, MainComponent, BreadcrumbsComponent],
   imports: [
     CommonModule,
     RouterModule

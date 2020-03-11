@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { InboxComponent } from './inbox.component';
 
-const routes: Routes = [{ path: '', component: InboxComponent }];
+const routes: Routes = [{
+  path: '', component: InboxComponent,
+  data: { title: 'Inbox title', breadcrumbs: { label: 'Inbox' } }
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+
 import { Movie } from './../../../shared/models/movie';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskDataService {
+export class MovieService {
 
   apiURL: string = 'https://swapi.co/api/films/';
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<Movie[]> {
-    return this.http.get<{ results: Movie[] }>(this.apiURL).pipe( map(response => response.results));
+  getMovie(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiURL}${id}`);
   }
 }
-

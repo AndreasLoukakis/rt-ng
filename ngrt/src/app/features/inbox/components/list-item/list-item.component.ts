@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from './../../services/task-data.service';
+import { Movie } from './../../../../shared/models/movie';
 
 @Component({
   selector: 'app-list-item',

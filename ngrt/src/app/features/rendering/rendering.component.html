@@ -1,0 +1,9 @@
+<p>id is {{movieId}}</p>
+<div>
+  <!-- <pre>{{movie$ | async | json}}</pre> -->
+</div>
+<h3>May the forms be with you</h3>
+<app-parties [urls]="(movie$ | async).characters"></app-parties>
+<app-properties> [urls]="(movie$ | async).planets"</app-properties>
+<app-products [urls]="(movie$ | async).vehicles"></app-products>
+<app-accounts [urls]="(movie$ | async).starships"></app-accounts>

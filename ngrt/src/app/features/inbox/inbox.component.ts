@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TaskDataService, Movie } from './services/task-data.service';
+import { TaskDataService } from './services/task-data.service';
+import { Movie } from './../../shared/models/movie';
 
 @Component({
   selector: 'app-inbox',

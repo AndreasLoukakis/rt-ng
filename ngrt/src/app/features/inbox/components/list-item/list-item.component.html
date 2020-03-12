@@ -12,7 +12,9 @@
       <div class="pf-c-data-list__cell pf-m-align-left">
         <div>
           <div>
-            <p id="page-layout-data-list-expandable-data-list-item1">{{movie.title}}</p>
+            <p id="page-layout-data-list-expandable-data-list-item1">
+              <a [routerLink]="['/movies', movie.episode_id]">{{movie.title}}</a>
+            </p>
             <small>Episode id: {{movie.episode_id}}
             </small>
           </div>

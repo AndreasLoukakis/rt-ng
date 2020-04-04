@@ -28,6 +28,9 @@ Time to setup a service: `ng g s features/rendering/services/movie`
 
 Seems like we'll be using Movie quite a lot, it's time to move it to a proper place. Let's make a shared module and put there whatever should be available throughout the application.
 
+Why using a shared module? Let's see how dependency tree could work amongst main (app) and lazy loaded modules
+
+
 We can use a model or interface folder for that and it might be a good idea to use a 'barrel'
 
 We'll now set up the service to get a single Movie result and dump the json data.

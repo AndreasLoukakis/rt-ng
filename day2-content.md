@@ -134,7 +134,7 @@ For data, we'll use star wars instead of deals for a change. So, let's set up th
 The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
 
 
-We'll also need a Movie interface, I'll keep it in the service file for convenience. You should not.
+We'll also need a Movie interface, I'll keep it in the service file for convenience, but if we need to use it elsewere we will have to move somewhere better.
 
 ```javascript
 export interface Movie {
@@ -152,7 +152,9 @@ export interface Movie {
   url: string;// -- the hypermedia URL of this resource.
   created: string;// -- the ISO 8601 date format of the time that this resource was created.
   edited: string;//
-}```
+}
+```
+
 
 Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
 
@@ -178,7 +180,7 @@ I thing an attribute directive would be a much better solution for this job. Let
 
 `ng g d features/inbox/directives/tpl-modifier`
 
-There are several ways to access and modify host element properties, let's discuss that and fininsh up with the directive. 
+There are several ways to access and modify host element properties, let's discuss that and fininsh up with the directive.
 
 The opening crawl looks lame. Let's give some actual crawl effect.
 
@@ -202,11 +204,11 @@ OK, let's get that data from activatedRoute and build the breadcrumbs list.
 
 ### Other ways we could have done this?
 
-We'll see how component communication in various levels can work, but most likely we would use some kind of a service either as a mediator, a state or a property store.
+We'll see how component communication in various levels can work, but most likely we would use some kind of a service either as a mediator or event bus, a state, an observer pattern or a property store.
 
 
-## Exercise: Create a new lazy loaded module, called rendering. It should serve one dynamic route, like 'movies/{id}' which will resolve to the remdering.component. Also, create a service with one method: getMovie(id). This service, should be injected and used by the component using the dynamic parameter it reseived in the url.
-Just dump the response in the html if you want, we'll take it from there.
+## Exercise:
+Create a new lazy loaded module, called rendering. It should serve one dynamic route, like 'movies/{id}' which will resolve to the remdering.component. Also, create a service with one method: getMovie(id). This service, should be injected and used by the component using the dynamic parameter it reseived in the url. Just dump the response in the html if you want, we'll take it from there.
 
 May the forms be with you :)
 

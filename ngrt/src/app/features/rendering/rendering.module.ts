@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from './../../shared/shared.module';
 
 import { RenderingRoutingModule } from './rendering-routing.module';
 import { RenderingComponent } from './rendering.component';
@@ -12,7 +12,7 @@ import { ProductsComponent } from './components/products/products.component';
 @NgModule({
   declarations: [RenderingComponent, PartiesComponent, PropertiesComponent, AccountsComponent, ProductsComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     RenderingRoutingModule
   ]
 })

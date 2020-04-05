@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from './../../shared/shared.module';
 
 import { InboxRoutingModule } from './inbox-routing.module';
 import { InboxComponent } from './inbox.component';
@@ -13,9 +12,8 @@ import { TplModifierDirective } from './directives/tpl-modifier.directive';
 @NgModule({
   declarations: [InboxComponent, ListComponent, ListItemComponent, ListItemDetailsComponent, TplModifierDirective],
   imports: [
-    CommonModule,
+    SharedModule,
     InboxRoutingModule,
-    // HttpClientModule
   ]
 })
 export class InboxModule { }

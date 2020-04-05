@@ -28,7 +28,12 @@ Time to setup a service: `ng g s features/rendering/services/movie`
 
 Seems like we'll be using Movie quite a lot, it's time to move it to a proper place. Let's make a shared module and put there whatever should be available throughout the application.
 
-Why using a shared module? Let's see how dependency tree could work amongst main (app) and lazy loaded modules
+    Note: Why is it important to use a shared module? Let's see how dependency tree could work amongst main (app) and **lazy loaded** modules
+
+![Diagram: app bootstraping](./diagrams/shared_module.svg)
+
+    Let's also move angular's http client and common modules to shared module and use it from there, everywhere.
+
 
 
 We can use a model or interface folder for that and it might be a good idea to use a 'barrel'
@@ -42,9 +47,9 @@ The data we get from this single request is not enough to have a proper 'renderi
 - the starships as accounts (they should be multi-selectable) 
 - the vehicles as products
 
-To get the actual data from the links, we have a few options. We could use a global state like redux / ngrx and store each resource there, then subscribe to the data from the components. We could get everything from the parent component, then pass each collection to the corresponding componnent. Or, we could just pass the i.e. characters url array to the parties component, and let it do it's thing.
+To get the actual data from the links, we have a few options. We could use a global state like redux / ngrx and store each resource there, then subscribe to the data from the components. We could get everything from the parent component, then pass each collection to the corresponding component. Or, we could just pass the i.e. characters url array to the parties component, and let it do it's thing.
 
-An ngrx setup has some concepts that would need a lot of discussion and although it would be nice and clean, we'll pass for now and maybe discuss the patter later if there is time. The second solution sounds messy, there are too many things for one place to handle. So, you know what we'll do.
+An ngrx setup has some concepts that would need a lot of discussion and although it would be nice and clean, we'll pass for now and maybe discuss this patter later if there is time. The second solution sounds messy, there are too many things for one place to handle. So, you know what we'll do.
 
 Our setup, besides the components will require the interfaces (which we'll get from the swapi and maybe add a couple properties) and either a few more methods to our service. Or maybe one, with generics? we'll see.
 

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 
+import { SharedModule } from './shared/shared.module';
 import { UiShellModule } from './ui-shell/ui-shell.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     UiShellModule,
-    HttpClientModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

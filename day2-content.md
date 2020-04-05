@@ -204,11 +204,14 @@ OK, let's get that data from activatedRoute and build the breadcrumbs list.
 
 ### Other ways we could have done this?
 
-We'll see how component communication in various levels can work, but most likely we would use some kind of a service either as a mediator or event bus, a state, an observer pattern or a property store.
+We'll see how component communication in various levels can work, but most likely we would use some kind of a service either as a mediator or event bus, some kind of a state, an observer pattern or a property store. 
 
+If we have some time, we could see a simple example of an event bus service and an observer pattern and discuss pros and cons of each. If we needed something more apropriate for the breadcrumbs, which should we choose?
 
 ## Exercise:
 Create a new lazy loaded module, called rendering. It should serve one dynamic route, like 'movies/{id}' which will resolve to the remdering.component. Also, create a service with one method: getMovie(id). This service, should be injected and used by the component using the dynamic parameter it reseived in the url. Just dump the response in the html if you want, we'll take it from there.
 
 May the forms be with you :)
+
+
 

@@ -79,7 +79,7 @@ and add these in app.routing module
 ```
 Done, let's start with the inbox.
 
-Our inbox will be a classic MiTOS inbox, with a list of applications that might have different layout semantics (eg different backgound for x type of application). We also need them to be expandable, and display some extra info (we will ignore other common features, like pagination, filters etc).
+Our inbox will be a data list, with items that might have different layout semantics (eg different backgound for x type of application). We also need them to be expandable, and display some extra info (we will ignore other common features, like pagination, filters etc).
 
 Inbox will be rendered in it's own url, have it's own logic and components so it's  a good candidate for a lazy loaded module.
 
@@ -91,7 +91,8 @@ This did some more things than just create a new module: It also created an inbo
 
 (Since this is our first route, we also need to create a default route. And while we're at it, let's also add a default route link and an inbox link to our sidebar)
 
-`<a [routerLink]="['/inbox']" routerLinkActive="active" class="pf-c-nav__link pf-m-current">Inbox</a>`
+`<a [routerLink]="['/inbox']" routerLinkActive="pf-m-current" class="pf-c-nav__link pf-m-current">Inbox</a>`
+
 
 We can already go to /inbox and see what happens...
 
@@ -133,7 +134,7 @@ For data, we'll use star wars instead of deals for a change. So, let's set up th
 The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
 
 
-We'll also need a Movie interface, I'll keep it in the service file for convenience. You should not.
+We'll also need a Movie interface, I'll keep it in the service file for convenience, but if we need to use it elsewere we will have to move somewhere better.
 
 ```javascript
 export interface Movie {
@@ -151,7 +152,9 @@ export interface Movie {
   url: string;// -- the hypermedia URL of this resource.
   created: string;// -- the ISO 8601 date format of the time that this resource was created.
   edited: string;//
-}```
+}
+```
+
 
 Import the service and use it as an observable with async pipe in your html. Alternatively, subscribe and assign it to non-async variable but dont forget to unsubscribe.
 
@@ -178,5 +181,37 @@ I thing an attribute directive would be a much better solution for this job. Let
 `ng g d features/inbox/directives/tpl-modifier`
 
 There are several ways to access and modify host element properties, let's discuss that and fininsh up with the directive.
+
+The opening crawl looks lame. Let's give some actual crawl effect.
+
+### Building the breadcrumbs and the title: getting and passing data to Router
+
+We don't have immediate access to the area where the breadcrumbs and the title are rendered, from our inbox components. We need to find a way to pass data dynamically to our (not yet created) breadcrump and title component.
+
+The router is a good candidate to pass some useful info for the breadcrumbs (current route), but we also need a title.
+
+We'll do it the easy way now and discuss some more complex ways of component communication later.
+
+`ng g c ui-shell/components/presentation/breadcrumbs`
+
+For convenience, we'll add both breadcrumbs and title in the same component. In a real app, we should probably seperate them (or at least give the component a better name).
+
+We'll use the Router events, which conveniently provides an observable which we can subscribe to and listen for route changes, react and create a set of breadcrumbs and the title.
+
+OK, that was almost what we want. We need a title for the page and a label for the breadcrumb. We can pass data to the router, using data property in the route definition. Let's use a data object with title and breacrumb properties (the title in the route config doesn't look like a good match, we'll get back to that when discussing ways to communicate between components).
+
+OK, let's get that data from activatedRoute and build the breadcrumbs list. 
+
+### Other ways we could have done this?
+
+We'll see how component communication in various levels can work, but most likely we would use some kind of a service either as a mediator or event bus, some kind of a state, an observer pattern or a property store. 
+
+If we have some time, we could see a simple example of an event bus service and an observer pattern and discuss pros and cons of each. If we needed something more apropriate for the breadcrumbs, which should we choose?
+
+## Exercise:
+Create a new lazy loaded module, called rendering. It should serve one dynamic route, like 'movies/{id}' which will resolve to the remdering.component. Also, create a service with one method: getMovie(id). This service, should be injected and used by the component using the dynamic parameter it reseived in the url. Just dump the response in the html if you want, we'll take it from there.
+
+May the forms be with you :)
+
 
 

@@ -128,6 +128,13 @@ Hint: each feature should exist under a seperate module.
 
     It's worth mentioning there's a proposal for [Javascript Decorators](https://github.com/tc39/proposal-decorators), currently in stage 2 (stage 3 means it's coming in the next version)
 
+- ### router
+    - An overview of how the router works
+        - bootstrap component
+        - router outlet
+        - defining routes & redirects: 
+            // TODO https://www.newline.co/@krishna/angular-routing-explained--3541df8d?utm_campaign=NG-Newsletter&utm_medium=email&utm_source=NG-Newsletter_327
+
 - ### interceptors
     They are a way - provided by the framework - to intercept (obviously) globally all http requests, possibly do something with them or trigger some other logic and give back control to the normal pipeline.
 

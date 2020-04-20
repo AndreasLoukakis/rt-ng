@@ -10,6 +10,9 @@
 # dependencies
 /ngrt/node_modules
 
+# custom
+*.notes.md
+
 # profiling files
 ngrt/chrome-profiler-events*.json
 ngrt/speed-measure-plugin*.json

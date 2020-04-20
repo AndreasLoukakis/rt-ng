@@ -131,7 +131,7 @@ Since we'll be using http, we should add HttpClientModule to the app module too
 
 For data, we'll use star wars instead of deals for a change. So, let's set up the data service:
 
-The base URI is `https://swapi.co/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.co/api/films/`
+The base URI is `https://swapi.dev/api/` and we'll be consuming a collection of available movies for our list, so its `https://swapi.dev/api/films/`
 
 
 We'll also need a Movie interface, I'll keep it in the service file for convenience, but if we need to use it elsewere we will have to move somewhere better.

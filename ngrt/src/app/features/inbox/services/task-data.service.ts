@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TaskDataService {
 
-  apiURL: string = 'https://swapi.co/api/films/';
+  apiURL: string = 'https://swapi.dev/api/films/';
 
   constructor(private http: HttpClient) { }
 

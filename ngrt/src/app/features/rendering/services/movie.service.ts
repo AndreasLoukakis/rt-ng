@@ -11,7 +11,7 @@ import { Movie } from './../../../shared/models/movie';
 })
 export class MovieService {
 
-  apiURL: string = 'https://swapi.co/api/films/';
+  apiURL: string = 'https://swapi.dev/api/films/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,97 @@
+<div class="pf-c-form__group">
+  <label class="pf-c-form__label">
+    <span class="pf-c-form__label-text">Middle Name</span>
+  </label>
+  <input class="pf-c-form-control" type="text"
+    [formControl]="middleName" />
+    <p *ngIf="middleName?.errors?.required" class="pf-c-form__helper-text pf-m-error">This field is required</p>
+    <p *ngIf="middleName?.errors?.pattern" class="pf-c-form__helper-text">This field should only have numbers</p>
+</div>
+
+<!-- <form #myForm (ngSubmit)="onSubmit($event)" [formGroup]="myData">
+
+  <div class="pf-c-form__group">
+    <label class="pf-c-form__label">
+      <span class="pf-c-form__label-text">First Name</span>
+    </label>
+    <input class="pf-c-form-control" type="text"
+      formControlName="firstName" />
+      <p *ngIf="myData.get('firstName')?.errors?.required" class="pf-c-form__helper-text pf-m-error">This field is required</p>
+  </div>
+
+  <div class="pf-c-form__group">
+    <label class="pf-c-form__label">
+      <span class="pf-c-form__label-text">Last Name</span>
+    </label>
+    <input class="pf-c-form-control" type="text"
+      formControlName="lastName" />
+  </div>
+
+  <div formGroupName="address">
+    <div class="pf-c-form__group">
+      <label class="pf-c-form__label">
+        <span class="pf-c-form__label-text">Street</span>
+      </label>
+      <input class="pf-c-form-control" type="text"
+        formControlName="street" />
+    </div>
+
+    <div class="pf-c-form__group">
+      <label class="pf-c-form__label">
+        <span class="pf-c-form__label-text">City</span>
+      </label>
+      <input class="pf-c-form-control" type="text"
+        formControlName="city" />
+    </div>
+  </div>
+
+  <button [disabled]="!myData.valid" class="pf-c-button pf-m-primary" type="submit">Submit form</button>
+</form> -->
+
+<form (ngSubmit)="onSubmit($event)" [formGroup]="myComplexData">
+
+  <div class="pf-c-form__group">
+    <label class="pf-c-form__label">
+      <span class="pf-c-form__label-text">First Name</span>
+    </label>
+    <input class="pf-c-form-control" type="text"
+      formControlName="firstName" />
+      <p *ngIf="myData.get('firstName')?.errors?.required" class="pf-c-form__helper-text pf-m-error">This field is required</p>
+  </div>
+
+  <div class="pf-c-form__group">
+    <label class="pf-c-form__label">
+      <span class="pf-c-form__label-text">Last Name</span>
+    </label>
+    <input class="pf-c-form-control" type="text"
+      formControlName="lastName" />
+  </div>
+
+  <div formArrayName="addresses" *ngFor="let address of formAddresses.controls; let i = index">
+      <div [formGroupName]="i">
+        <div class="pf-c-form__group">
+          <label class="pf-c-form__label">
+            <span class="pf-c-form__label-text">Street</span>
+          </label>
+          <input class="pf-c-form-control" type="text"
+            formControlName="street" />
+        </div>
+
+        <div class="pf-c-form__group">
+          <label class="pf-c-form__label">
+            <span class="pf-c-form__label-text">City</span>
+          </label>
+          <input class="pf-c-form-control" type="text"
+            formControlName="city" />
+        </div>
+      </div>
+  </div>
+
+  <button [disabled]="!myComplexData.valid" class="pf-c-button pf-m-primary" type="submit">Submit form</button>
+</form>
+<pre>
+  {{myComplexData.value | json}}
+</pre>
+<pre>
+  {{this.formChanges$ | async | json}}
+</pre>

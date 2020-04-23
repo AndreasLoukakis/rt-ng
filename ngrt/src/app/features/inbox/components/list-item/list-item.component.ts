@@ -20,4 +20,9 @@ export class ListItemComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
+  getIdFromUrl(url: string): string {
+    const parts = url.split('/');
+    return parts.pop() || parts.pop();
+  }
+
 }

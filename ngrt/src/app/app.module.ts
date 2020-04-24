@@ -4,22 +4,19 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlayComponent } from './playground/play/play.component';
-import { AttrTestDirective } from './playground/directives/attr-test.directive';
-import { ChildComponent } from './playground/child/child.component';
+
+import { PlaygroundModule } from './playground/playground.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PlayComponent,
-    AttrTestDirective,
-    ChildComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PlaygroundModule
   ],
   providers: [],
   bootstrap: [AppComponent]

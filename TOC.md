@@ -1,17 +1,10 @@
 
 TOC is a work in progress
 ***
+
 # Table of Contents
 
-## 0. How to use this repo
-- Create and cd in a local directory `mkdir rtng && cd rtng`
-- Clone this repo `git clone https://github.com/AndreasLoukakis/rt-ng.git`
-- If git is not an option, go to [github repo](https://github.com/AndreasLoukakis/rt-ng) and download a zip of the repo. However, there will be some inconvenience to switch from / to various branches so try to have git available.
-- Each part will have course contents in an md format and two branches: xCourse-start and xCourse-finished
-- We should start with the x-start branch and move to the x-finish branch during the course
-- Each course will also include an extras.md with proposed exercises and recommended reading. The exercises will be discussed at the beginning of each next course.
-
-## 1. Setup and build a new app
+## 1. Environment and building blocks
  - Dependencies
     - NodeJS
     - Angular CLI
@@ -33,51 +26,29 @@ TOC is a work in progress
     - pipes
     - decorators
     - interceptors
-    - Models: Classes & Interfaces
-        - And some typescript types: enums / tuples
  - folder structure
-    - alterantives
-    - opinionated. What we'll be using
 
 
-## 2. Create our first feature: Inbox
-- building blocks & structure
-- Components and services
+## 2. Modules, Components and Services
+- Modules, Components and services
 - Dependency injection
 - Consuming observables
     - async pipe
     - subscriptions
-    - RxJS helpers via pipe
-- Passing data between components
-- It works. Can we do better?
-    - Make it it's own module
-    - Lazy loading
-    - route resolver
-    - Intro to STK
-    - refactor to stk-lists
-        - note: stk is WIP and not a public library
+    - RxJS helpers
+- Component communication
 
 
-
-## 3. Create a basic rendering
+## 3. Angular Reactive Forms
+ - Feature design & structure
+ - Lazy loaded modules
  - Angular forms
     - Reactive
-    - Template driven. Not using them.
+    - Template driven
     - Bindings, validations, practices
- - A lazy loaded module with CLI
- - Feature design & structure
-    - Smart & presentation components
-    - Services
-    - stk-forms
-        - All suggestions welcome. WIP.
- - Building the feature
-    - Container(s)
-    - Service(s)
-    - Presentation components
-    - Bindings, validations, behavior
 
 
-## 4. A deeper look into components and services
+## 4. More on Forms and Componennts
 
 ### Components
  - templates
@@ -100,7 +71,8 @@ TOC is a work in progress
  - Notes on service instances / singleton / provided in...
  - What can we do better now?
 
-## 5. Are our features really working?
+## 5. Unit and integration tests
+    Are our features really working?
 - Types of tests
 - Angular test environment
 - Unit tests
@@ -117,4 +89,7 @@ TOC is a work in progress
     - Async
 - E2E is out of scope, just some basics
 
-## 6. We have a new client demand...
+## Things we didn't discuss, not necessarily out of scope
+Some notes on important things we didn't have a chance to cover, so that we can add them in a session if we get a change or left for you to explore.
+
+- State management

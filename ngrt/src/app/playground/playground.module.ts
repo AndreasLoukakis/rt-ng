@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PlayComponent } from './play/play.component';
 import { AttrTestDirective } from './directives/attr-test.directive';
 import { ChildComponent } from './child/child.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +14,8 @@ import { ChildComponent } from './child/child.component';
     ChildComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class PlaygroundModule { }

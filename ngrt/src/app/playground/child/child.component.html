@@ -1,11 +1,17 @@
-<div>
-  <p>
-    Local var is {{localVar}}
-  </p>
-  <p>
-    local obj is {{localObj | json}}
-  </p>
-  <p>
-    {{parentObj | json}}
-  </p>
+<div style="padding:2em;border:1px solid #ddd;">
+  <h3 class="pf-c-title pf-m-2xl">Child componnent</h3>
+
+  <pre>{{parentVar | json}}</pre>
+
+  <div>
+    <select #itemVal class="pf-c-form-control" name="itemsdata">
+      <option *ngFor="let item of parentVar;" value="{{item.name}}">
+        {{item.name}}, currently {{item.age}}
+      </option>
+    </select>
+    <button (click)="incrementAge(itemVal.value)"
+      class="pf-c-button pf-m-primary" type="button">
+      Increment age
+    </button>
+  </div>
 </div>

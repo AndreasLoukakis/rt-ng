@@ -8,24 +8,20 @@ import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter
 })
 export class ChildComponent implements OnInit {
 
-  @Input() parentVar: string;
-  // this will get input changes only without setting onpush, or whenever an other input triggers update
-  //
-  @Input() parentObj: any;
-
-  @Output()
-
-  get localVar(): string {
-    return this.parentVar;
-  }
-
-  localObj: any;
+  @Input() parentVar: any;
+  @Output() childChanged: EventEmitter<{name: string, age: any}> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    // setting local var here (or in the constructor), will not update on input change
-    this.localObj = this.parentObj;
+  }
+
+  incrementAge(name: string) {
+    const emitData = {
+      name,
+      age: ++this.parentVar.find(item => item.name === name).age
+    }
+    this.childChanged.emit(emitData);
   }
 
 }

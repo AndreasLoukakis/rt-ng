@@ -1,19 +1,13 @@
-<div style="padding:2em;text-align:center">
-<h1>This is the playground area</h1>
-<div>
-  <div class="playing">This is inside playing class</div>
-  <div>
-    <input  [(ngModel)]="parentNgModelvar" type="text" #nameRef placeholder="Just an input">
+<div class="pf-c-content">
+  <h1 class="pf-c-title pf-m-3xl">Play componnent</h1>
+
+  <div class="directive-target">
+    <input class="pf-c-form-control" type="text"
+      value="Standard"
+      aria-label="Standard input example" />
   </div>
-  <div>
-    <input  [(ngModel)]="parentObj.a" type="text" placeholder="Just an input">
-  </div>
-  <div>
-    <input appAttrTest type="number" placeholder="A number input">
-  </div>
-  <div>
-    <strong>Child component</strong>
-    <app-child [parentVar]="parentNgModelvar" [parentObj]="parentObj"></app-child>
-  </div>
-</div>
+
+  <app-child (childChanged)="onChildChanged($event)"
+    [parentVar]="items$ | async"></app-child>
+
 </div>

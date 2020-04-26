@@ -42,9 +42,9 @@ In a typical app, a better description of the bootstraping process would be some
 - modules:
 
 - ### directives
-    - **components**:
-    - **structural**:
-    - **attribute**:
+    - **components**
+    - **structural**
+    - **attribute**
 
 - ### services
 

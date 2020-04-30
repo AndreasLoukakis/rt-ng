@@ -1,7 +1,11 @@
 <div style="padding:2em;border:1px solid #ddd;">
   <h3 class="pf-c-title pf-m-2xl">Child componnent</h3>
-  <div>
+  <div appAttrTest style="background-color: orange;">
     <pre>{{items | json}}</pre>
   </div>
 </div>
-<button (click)="notify({name: 'asdf', age: 99})" class="pf-c-button pf-m-primary" type="button">Notify play</button>
+<select #mySelectedItem class="pf-c-form-control">
+  <option *ngFor="let item of items;let i = index" value="{{item.name}}">{{item.name}} is currently {{item.age}} - {{i}}</option>
+</select>
+<button (click)="incrementAge(mySelectedItem.value)" class="pf-c-button pf-m-primary" type="button">Notify play</button>
+

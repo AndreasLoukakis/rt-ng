@@ -1,13 +1,43 @@
 <div class="pf-c-content">
   <h1 class="pf-c-title pf-m-3xl">Play componnent</h1>
 
-  <div class="directive-target">
-    <input class="pf-c-form-control" type="text"
-      value="Standard"
-      aria-label="Standard input example" />
-  </div>
+  <div class="pf-l-flex">
+    <div class="pf-m-grow">
 
-  <app-child (childChanged)="onChildChanged($event)"
-    [parentVar]="items$ | async"></app-child>
+      <div class="directive-target">
+        <input class="pf-c-form-control" type="text"
+          value="Standard"
+          aria-label="Standard input example" />
+      </div>
+
+      <app-child (childChanged)="onChildChanged($event)"
+        [parentVar]="items$ | async">
+        <div>Content projected in a div</div>
+        <span>content projected in a span</span>
+      </app-child>
+
+      <div>
+        <div>
+          <ul>
+            <li>
+              <a [routerLink]="['more']" routerLinkActive="router-link-active">
+                link to nested route
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['more', {param: 'something'}]"
+                [state]="{name: 'Am I Yoda?', img: 'https://media4.s-nbcnews.com/j/newscms/2019_47/3112746/191121-baby-yoda-cs-959a_ed40d38efa3cde7ab92df2d5492a81a5.fit-1120w.jpg'}">
+                link to nested route with state data
+              </a>
+            </li>
+          </ul>
+
+      </div>
+      </div>
+    </div>
+    <div class="">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
 
 </div>

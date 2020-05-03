@@ -3,6 +3,17 @@
 
   <pre>{{parentVar | json}}</pre>
 
+  <ul>
+    <li *ngFor="let item of parentVar;let index">
+      <a [routerLink]="['more', {name: item.name}]"
+        [state]="item">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+
+
+
   <div>
     <select #itemVal class="pf-c-form-control" name="itemsdata">
       <option *ngFor="let item of parentVar;" value="{{item.name}}">
@@ -14,4 +25,7 @@
       Increment age
     </button>
   </div>
+</div>
+<div>
+  <ng-content select="div"></ng-content>
 </div>

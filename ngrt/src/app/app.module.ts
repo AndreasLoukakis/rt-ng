@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +17,8 @@ import { PlaygroundModule } from './playground/playground.module';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    PlaygroundModule
+    PlaygroundModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

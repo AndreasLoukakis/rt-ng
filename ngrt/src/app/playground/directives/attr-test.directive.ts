@@ -13,7 +13,7 @@ export class AttrTestDirective {
     // use NNgControl when using reactive forms.
   ) {
     // directrly access element via elementref
-    this.el.nativeElement.style.backgroundColor = 'grey';
+    this.el.nativeElement.style.backgroundColor = 'lightgrey';
     // or
     // el.nativeElement.setAttribute('disabled', true);
   }
@@ -32,7 +32,7 @@ export class AttrTestDirective {
   }
 
   // bind to host element attributes or properties
-  @HostBinding('attr.class') cssClass = 'someBinndedClass';
+  @HostBinding('attr.id') itemId = 'binded-id';
   // of if we want to add a class, not replace them we will also
   // need an input and some more setup to handle a private var
   // with accessors

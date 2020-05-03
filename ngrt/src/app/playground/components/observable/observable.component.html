@@ -1,0 +1,17 @@
+
+
+<div class="pf-l-flex">
+  <div class="pf-l-flex pf-m-flex-1">
+    <h1 class="pf-c-title pf-m-3xl">Observables</h1>
+    <pre>{{observableItems$ | async | json}}</pre>
+    <h3>observable is not multicast by default</h3>
+    <pre>{{observableItems$ | async}}</pre>
+
+    <hr>
+
+    <button #obsClicks class="pf-c-button pf-m-secondary" type="button">I stream events</button>
+  </div>
+  <div class="pf-l-flex pf-m-flex-1">
+    <h1 class="pf-c-title pf-m-3xl">Promises</h1>
+  </div>
+</div>

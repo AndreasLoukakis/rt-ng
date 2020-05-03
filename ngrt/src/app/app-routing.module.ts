@@ -21,7 +21,8 @@ const routes: Routes = [
       }
     ],
 
-  }
+  },
+  { path: 'inbox', loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule) }
 ];
 
 @NgModule({

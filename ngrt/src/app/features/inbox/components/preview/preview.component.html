@@ -1,0 +1,16 @@
+<h3 class="pf-c-title pf-m-3xl">Characters</h3>
+<div><a [routerLink]="['/inbox']" routerLinkActive="router-link-active" >Close</a></div>
+<ul *ngIf="characters$  | async as characters; else loading">
+  <li *ngFor="let character of characters$ | async; let i = index;">
+    {{i}}: {{character.name}},
+  </li>
+</ul>
+<ng-template #loading>
+  <div class="pf-u-text-align-center">
+    <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+      <span class="pf-c-spinner__clipper"></span>
+      <span class="pf-c-spinner__lead-ball"></span>
+      <span class="pf-c-spinner__tail-ball"></span>
+    </span>
+  </div>
+</ng-template>

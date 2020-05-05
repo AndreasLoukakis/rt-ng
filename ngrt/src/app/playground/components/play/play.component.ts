@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlayService, Items } from './../../services/play.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-play',
@@ -12,6 +13,8 @@ export class PlayComponent implements OnInit, OnDestroy {
   myItems: Items[];
   myItems$: Observable<Items[]>;
 
+  incrementEvents: BehaviorSubject<string> = new BehaviorSubject('Yoda');
+
   sub: Subscription;
 
 
@@ -20,7 +23,18 @@ export class PlayComponent implements OnInit, OnDestroy {
     //   data => this.myItems = data
     // )
 
-    this.myItems$ = this.dataService.getItems();
+    // this.myItems$ = this.dataService.getItems();
+
+    this.myItems$ = combineLatest(
+      this.dataService.getItems(),
+      this.incrementEvents
+    ).pipe(
+      map( ([items, name]) => items.map(item => {
+          if (item.name === name) item.age++
+          return item;
+        })
+      )
+    )
   }
 
   ngOnInit(): void {
@@ -31,7 +45,8 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   onChildEvent(e: string) {
-    ++this.myItems.find(item => item.name === e).age;
+    // ++this.myItems.find(item => item.name === e).age;
+    this.incrementEvents.next(e);
   }
 
 }

@@ -1,0 +1,48 @@
+<li class="pf-c-data-list__item" [ngClass]="{'pf-m-expanded': showDetails}">
+  <div class="pf-c-data-list__item-row">
+    <div class="pf-c-data-list__item-control">
+      <div class="pf-c-data-list__toggle">
+        <button (click)="toggleDetails()" class="pf-c-button pf-m-plain" type="button" aria-label="Toggle details for" aria-expanded="false" aria-controls="content-1">
+          <i class="fas fa-angle-right pf-c-data-list__toggle-icon"></i>
+        </button>
+      </div>
+
+    </div>
+    <div class="pf-c-data-list__item-content">
+      <div class="pf-c-data-list__cell pf-m-align-left">
+        <div>
+          <div>
+            <p id="page-layout-data-list-expandable-data-list-item1">{{movie.title}}</p>
+            <small>Episode id: {{movie.episode_id}}
+            </small>
+          </div>
+          <div class="pf-l-flex pf-m-wrap">
+            <div>
+              Director: {{movie.director}}
+            </div>
+            <div>
+              Producer: {{movie.producer}}
+            </div>
+          </div>
+          <div>Released: {{movie.release_date | date}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf-c-data-list__item-action">
+      <a [routerLink]="['preview', getIdFromUrl(movie.url)]" class="pf-c-button pf-m-secondary">Watch now</a>
+    </div>
+  </div>
+  <section *ngIf="showDetails" class="pf-c-data-list__expandable-content" aria-label="Content details">
+    <div class="pf-c-data-list__expandable-content-body" style="height:400px;">
+      <h3 class="pf-c-title pf-m-2xl">Movie opening crawl</h3>
+      <div class="titles-wrap">
+        <div class="titles">
+          <div class="titlecontent">
+            {{movie.opening_crawl}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <app-list-item-details *ngIf="showDetails" [movie]="movie"></app-list-item-details> -->
+</li>

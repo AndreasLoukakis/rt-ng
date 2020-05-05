@@ -1,3 +1,8 @@
+<div>
+<a [routerLink]="['/inbox']">
+  Inbox
+</a>
+</div>
 <div class="pf-c-content">
   <h1 class="pf-c-title pf-m-3xl">Play componnent</h1>
   <app-child (childChanged)="onChildEvent($event)" [items]="myItems$ | async"></app-child>

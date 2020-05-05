@@ -1,0 +1,15 @@
+<ng-container *ngIf="items | async;else loading">
+  <ul *ngFor="let movie of items | async">
+    <li>{{movie.title}}</li>
+  </ul>
+</ng-container>
+
+<ng-template #loading>
+  <div class="pf-u-text-align-center">
+    <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+      <span class="pf-c-spinner__clipper"></span>
+      <span class="pf-c-spinner__lead-ball"></span>
+      <span class="pf-c-spinner__tail-ball"></span>
+    </span>
+  </div>
+</ng-template>

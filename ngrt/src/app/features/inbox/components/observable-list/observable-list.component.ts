@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Movie } from './../../interfaces'
-import { Observable } from 'rxjs'
+import { Observable, fromEvent, Subject } from 'rxjs'
 import { shareReplay } from 'rxjs/operators';
 import { DataService } from './../../services/data.service';
 
@@ -9,13 +9,22 @@ import { DataService } from './../../services/data.service';
   templateUrl: './observable-list.component.html',
   styleUrls: ['./observable-list.component.scss']
 })
-export class ObservableListComponent implements OnInit {
+export class ObservableListComponent implements OnInit, AfterViewInit {
 
   items$: Observable<Movie[]>
   items: Movie[];
+  @ViewChild('myButton') btn: ElementRef<HTMLButtonElement>;
+
+  subClick$: Subject<any> = new Subject();
+
+  clicks$: Observable<Event>;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+
+
+
     this.items$ = this.dataService.getMoviesAsObservable()
       .pipe(shareReplay());
     // this.dataService.getMoviesAsObservable().subscribe(
@@ -29,6 +38,14 @@ export class ObservableListComponent implements OnInit {
       // .subscribe(
       //   data => this.items = data
       // )
+  }
+
+  ngAfterViewInit() {
+    this.clicks$ = fromEvent(this.btn.nativeElement, 'click');
+
+    this.clicks$.subscribe({
+      next: event => console.log(event)
+    })
   }
 
 }

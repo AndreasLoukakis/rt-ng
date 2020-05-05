@@ -1,10 +1,6 @@
-<pre>
-  {{items$ | async | json}}
-</pre>
+<ng-container *ngIf="items$ | async as items">
+  {{items | json}}
+</ng-container>
 
 
-<pre>
-  {{items$ | json}}
-</pre>
-
-
+<button #myButton class="pf-c-button pf-m-danger" type="button">Danger</button>

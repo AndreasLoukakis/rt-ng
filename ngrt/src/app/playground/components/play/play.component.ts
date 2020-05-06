@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { PlayService, Items } from './../../services/play.service';
-import { Observable, Subscription, combineLatest, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription, combineLatest, BehaviorSubject, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Component({

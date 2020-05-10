@@ -26,6 +26,15 @@ export class DataService {
       .then(response => response.json())
       .then(data => data.results);
   }
+
+  getByUrl<T>(url: string): Observable<T> {
+    return this.http.get<any>(url);
+  }
+
+  getMovie(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiURL}films/${id}`);
+  }
+
 }
 
 export interface MovieResponse {

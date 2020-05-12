@@ -6,7 +6,7 @@ import { tap, map, mergeMap } from 'rxjs/operators';
 
 import { InboxStateService } from './../../services/state.service';
 import { DataService } from './../../services/data.service';
-import { People } from './../../interfaces';
+import { People } from '../../../../shared/interfaces';
 
 @Component({
   selector: 'app-preview',

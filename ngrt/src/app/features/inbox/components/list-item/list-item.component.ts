@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Movie } from './../../interfaces';
+import { Movie } from '../../../../shared/interfaces';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({

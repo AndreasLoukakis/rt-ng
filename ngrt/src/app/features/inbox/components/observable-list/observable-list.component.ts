@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { Movie } from './../../interfaces'
+import { Movie } from '../../../../shared/interfaces'
 import { Observable, fromEvent, Subject } from 'rxjs'
 import { shareReplay } from 'rxjs/operators';
 import { DataService } from './../../services/data.service';

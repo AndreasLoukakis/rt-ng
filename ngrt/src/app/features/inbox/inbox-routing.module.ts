@@ -7,7 +7,8 @@ import { PreviewComponent } from './components/preview/preview.component';
 const routes: Routes = [
   {
     path: '', component: InboxComponent, children: [
-      { path: 'preview',  component: PreviewComponent }
+      // { path: 'preview/:id',  component: PreviewComponent },
+      { path: 'preview/:id/:collection',  component: PreviewComponent }
   ] }
 ];
 

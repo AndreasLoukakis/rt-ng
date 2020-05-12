@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Movie } from './../interfaces';
+import { Movie } from './../../../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,15 @@ export class DataService {
       .then(response => response.json())
       .then(data => data.results);
   }
+
+  getByUrl<T>(url: string): Observable<T> {
+    return this.http.get<any>(url);
+  }
+
+  getMovie(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiURL}films/${id}`);
+  }
+
 }
 
 export interface MovieResponse {

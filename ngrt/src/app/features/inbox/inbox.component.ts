@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 
 import { DataService } from './services/data.service';
-import { Movie } from './interfaces'
+import { Movie } from '../../shared/interfaces'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

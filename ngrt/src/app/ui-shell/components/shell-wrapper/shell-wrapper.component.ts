@@ -12,12 +12,14 @@ export class ShellWrapperComponent implements OnInit {
 
   inTransit$: Observable<Set<string>>;
 
-  constructor(private state: StateService) { }
-
-  ngOnInit(): void {
+  constructor(private state: StateService) {
     this.inTransit$ = this.state.state$.pipe(
       map(state => state.inTransit)
     )
+  }
+
+  ngOnInit(): void {
+
   }
 
 }

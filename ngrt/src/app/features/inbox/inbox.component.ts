@@ -4,8 +4,9 @@ import { DataService } from './services/data.service';
 import { Movie } from '../../shared/interfaces'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { StateService } from './services/state.service';
+import { StateService as UIState } from './../../ui-shell/services/state.service';
+
 
 @Component({
   selector: 'app-inbox',
@@ -19,14 +20,16 @@ export class InboxComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private state: StateService
+    private state: StateService,
+    private uiState: UIState
   ) { }
 
   @ViewChild('loading') mytpl: TemplateRef<any>;
 
   ngOnInit(): void {
     this.items$ = this.dataService.getMoviesAsObservable();
-    this.subrouteActive$ = this.state.state$.pipe( map(state => state.subRouteActive))
+    this.subrouteActive$ = this.state.state$.pipe(map(state => state.subRouteActive))
+    this.uiState.update({mainTitle: 'Inbox'})
   }
 
 }

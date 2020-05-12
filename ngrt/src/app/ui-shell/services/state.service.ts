@@ -7,7 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs'
 export class StateService {
 
   private defaultState: ShellState = {
-    inTransit: new Set()
+    inTransit: new Set(),
+    mainTitle: ''
   }
 
   private stateChanged$: BehaviorSubject<ShellState> = new BehaviorSubject(this.defaultState);
@@ -26,8 +27,15 @@ export class StateService {
     this.stateChanged$.next(this.prevState);
   }
 
+  update(newState: Partial<ShellState>): void {
+    const nextState = { ...this.prevState, ...newState };
+    this.stateChanged$.next(nextState);
+    this.prevState = nextState;
+  }
+
 }
 
 export interface ShellState {
-  inTransit: Set<string>
+  inTransit: Set<string>;
+  mainTitle: string;
 }

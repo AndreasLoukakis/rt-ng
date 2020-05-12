@@ -28,11 +28,10 @@
   </section>
   <section class="pf-c-page__main-section pf-m-light">
     <div class="pf-c-content">
-      <h1>Main title</h1>
-      <p>This is a demo of the Page component.</p>
+      <h1>{{mainTitle$ | async}}</h1>
     </div>
   </section>
-  <section class="pf-c-page__main-section">
+  <section class="pf-c-page__main-section pf-m-no-padding">
     <router-outlet></router-outlet>
     <!-- <h1>Hello</h1>
     <app-play></app-play> -->

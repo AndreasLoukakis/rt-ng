@@ -1,14 +1,27 @@
-<div class="pf-l-flex">
-  <div class="pf-l-flex pf-m-grow">
-    <div class="pf-l-flex__item">
-      <h3 class="pf-c-title pf-m-3xl">Observable data</h3>
-      <app-observable-list></app-observable-list>
+<!-- <router-outlet></router-outlet>
+<ul *ngIf="items$ | async as movies;else loading;" class="pf-c-data-list" role="list">
+  <app-list-item *ngFor="let movie of movies" [movie]="movie"></app-list-item>
+</ul> -->
+<div #drawer class="pf-c-drawer pf-m-inline-on-2xl" [ngClass]="{'pf-m-expanded': subrouteActive$ | async}">
+  <div class="pf-c-drawer__main">
+    <div class="pf-c-drawer__content pf-m-no-background">
+      <div class="pf-c-drawer__body pf-m-padding">
+        <ul *ngIf="items$ | async as movies;else loading;" class="pf-c-data-list" role="list">
+          <app-list-item *ngFor="let movie of movies" [movie]="movie"></app-list-item>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="pf-l-flex pf-m-grow">
-    <div class="pf-l-flex__item">
-      <h3 class="pf-c-title pf-m-3xl">Promise data</h3>
-      <app-promise-list></app-promise-list>
+    <div class="pf-c-drawer__panel" aria-expanded="true">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+<ng-template #loading >
+  <div class="pf-u-text-align-center">
+    <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+      <span class="pf-c-spinner__clipper"></span>
+      <span class="pf-c-spinner__lead-ball"></span>
+      <span class="pf-c-spinner__tail-ball"></span>
+    </span>
+  </div>
+</ng-template>

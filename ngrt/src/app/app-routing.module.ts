@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PlayComponent } from './playground/components/play/play.component';
 import { PlaygroundModule } from './playground/playground.module';
 
+import { AuthGuard } from './features/auth/guards/auth.guard';
+
 // https://angular.io/guide/styleguide#folders-by-feature-structure
 
 const routes: Routes = [
@@ -11,8 +13,10 @@ const routes: Routes = [
   { path: 'play', component: PlayComponent },
   {
     path: 'inbox',
-    loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule)
-  }
+    loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule),
+    canActivate: [AuthGuard]
+  },
+  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) }
 ];
 
 @NgModule({

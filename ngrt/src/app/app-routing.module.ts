@@ -16,7 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./features/inbox/inbox.module').then(m => m.InboxModule),
     canActivate: [AuthGuard]
   },
-  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) }
+  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'movie', loadChildren: () => import('./features/movie/movie.module').then(m => m.MovieModule) }
 ];
 
 @NgModule({

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     // this.otherName = new FormControl('my other name')
     // this.formData = new FormGroup({
     //   username: new FormControl('Andreas', Validators.required),
-    //   password: new FormControl('123', Validators.required)
+    //   password: new FormControl('123', Validators.required).
     // })
     this.formData = this.fb.group({
       username: [this.fromHttp.username, [Validators.required]],
@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.formData.value)
-    console.log(this.fromHttp)
-    // this.auth.login();
-    // this.router.navigate([this.returnTo]);
+    // console.log(this.formData.value)
+    // console.log(this.fromHttp)
+    this.auth.login();
+    this.router.navigate([this.returnTo]);
   }
 
 }

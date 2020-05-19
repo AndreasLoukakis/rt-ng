@@ -1,0 +1,48 @@
+<section class="pf-c-page__main-section">
+
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying [collection name] list, as a table</h2>
+      <div class="pf-c-toolbar" id="page-layout-table-compact-toolbar-top">
+
+        <div class="pf-c-toolbar__action-group">
+          <button class="pf-c-button pf-m-primary" type="button">New [collection] item</button>
+          <button class="pf-c-button pf-m-secondary"><i class="fas fa-recycle"></i></button>
+        </div>
+
+      </div>
+      <table class="pf-c-table pf-m-compact pf-m-grid-lg" role="grid" aria-label="This is a compact table example" id="page-layout-table-compact-table">
+        <thead>
+          <tr role="row">
+
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader"></th>
+            <th role="columnheader"></th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+
+            <td role="cell" data-label="Position">My name</td>
+            <td role="cell" data-label="Location">My name</td>
+            <td role="cell" data-label="Last seen">My name</td>
+            <td role="cell" data-label="Numbers">My name</td>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a href="#"><i class="fas fa-edit"></i> edit</a>
+            </td>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a href="#"><i class="fas fa-trash"></i> delete</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<pre>
+  {{this.items$ | async | json}}
+</pre>

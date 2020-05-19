@@ -1,9 +1,57 @@
 <section class="pf-c-page__main-section" style="min-height:70vh">
   <div>
 
-    <div class="pf-c-form__group pf-m-action">
-      <button (click)="login()" class="pf-c-button pf-m-primary pf-m-block" type="button">Log in</button>
-    </div>
+    <!-- <div class="pf-c-form__group">
+      <label class="pf-c-form__label" for="username">
+        <span class="pf-c-form__label-text">Username</span>
+        <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+      </label>
+      <input class="pf-c-form-control" type="text"
+        [formControl]="otherName"
+        aria-invalid="true" />
+      <p  class="pf-c-form__helper-text pf-m-error">Username is required</p>
+    </div> -->
+
+    <form [formGroup]="formData" class="pf-c-form" (ngSubmit)="login()">
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="username">
+          <span class="pf-c-form__label-text">Username</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input class="pf-c-form-control" type="text"
+          formControlName="username"
+          aria-invalid="true" />
+        <p  class="pf-c-form__helper-text pf-m-error">Username is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="password">
+          <span class="pf-c-form__label-text">Password</span>
+          <span class="pf-c-form__label-required" [attr.aria-hidden]="!formData.get('password')?.errors?.required">&#42;</span>
+        </label>
+        <input
+           class="pf-c-form-control" type="password"
+           formControlName="password"
+           aria-invalid="true" />
+           <p *ngIf="formData.get('password')?.errors?.required" class="pf-c-form__helper-text pf-m-error">Password is required</p>
+           <p *ngIf="formData.get('password')?.errors?.max"
+            class="pf-c-form__helper-text pf-m-error">Password has a min lenngth of {{formData.get('password')?.errors?.max | json}}</p>
+        </div>
+
+      <div class="pf-c-form__group pf-m-action">
+        <button [disabled]="!formData.valid" class="pf-c-button pf-m-primary pf-m-block" type="submit">Log in</button>
+      </div>
+
+    </form>
+
+    <pre>
+      {{formData.value | json}}
+    </pre>
+    <pre>
+      {{formData.get('password')?.errors | json}}
+    </pre>
 
   </div>
 </section>
+

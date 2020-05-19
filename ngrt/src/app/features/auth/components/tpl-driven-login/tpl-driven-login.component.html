@@ -1,0 +1,35 @@
+<section class="pf-c-page__main-section" style="min-height:70vh">
+  <div>
+
+    <form #formRef="ngForm" class="pf-c-form" (ngSubmit)="sumbit()">
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="username">
+          <span class="pf-c-form__label-text">Username</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input #username="ngModel" required [(ngModel)]="user.username" class="pf-c-form-control" type="text"
+          name="username"
+          [attr.aria-invalid]="!!username?.errors?.required" />
+        <p *ngIf="username?.errors?.required" class="pf-c-form__helper-text pf-m-error">Username is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="password">
+          <span class="pf-c-form__label-text">Password</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input #password="ngModel" required [(ngModel)]="user.password" class="pf-c-form-control" type="password" name="password" aria-invalid="true" />
+        <p *ngIf="password?.errors?.required" class="pf-c-form__helper-text pf-m-error">Password is required</p>
+      </div>
+
+      <div class="pf-c-form__group pf-m-action">
+        <button [disabled]="!formRef.valid" class="pf-c-button pf-m-primary pf-m-block" type="submit">Log in</button>
+      </div>
+
+    </form>
+    <pre>{{formRef.value | json}}</pre>
+    <pre>{{password.errors | json}}</pre>
+
+  </div>
+</section>

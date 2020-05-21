@@ -1,0 +1,52 @@
+<section class="pf-c-page__main-section">
+
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying {{collection$ | async}} list, as a table</h2>
+      <div class="pf-c-toolbar" id="page-layout-table-compact-toolbar-top">
+
+        <div class="pf-c-toolbar__action-group">
+          <button class="pf-c-button pf-m-primary" type="button">New {{collection$ | async}} item</button>
+          <button class="pf-c-button pf-m-secondary" (click)="refresh()"><i class="fas fa-recycle"></i></button>
+        </div>
+
+      </div>
+      <table *ngIf="props$ | async" class="pf-c-table pf-m-compact pf-m-grid-lg" role="grid" aria-label="This is a compact table example" id="page-layout-table-compact-table">
+        <thead>
+          <tr role="row">
+
+            <th *ngFor="let prop of props$ | async" role="columnheader" scope="col">{{prop.label}}</th>
+
+            <th role="columnheader"></th>
+            <th role="columnheader"></th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr *ngFor="let item of refreshed$ | async" role="row">
+
+            <td *ngFor="let prop of props$ | async" role="cell">{{item[prop.value]}}</td>
+
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a (click)="editItem(item)"><i class="fas fa-edit"></i> edit</a>
+            </td>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a (click)="delete(item)"><i class="fas fa-trash"></i> delete</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<app-movie-collection-item-editor
+  (itemSave)="onSaveItem($event)"
+  (itemCancel)="onCancel()"
+  [item$]="selectedItem$"
+  [type$]="collection$"
+  [props$]="props$"
+  *ngIf="showEditor">
+</app-movie-collection-item-editor>
+<pre>
+  {{selectedItem$  | async | json}}
+</pre>

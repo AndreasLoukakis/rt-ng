@@ -1,4 +1,153 @@
-<p>movie works!</p>
-<pre>
-  {{movie$ | async | json}}
-</pre>
+<!-- initial html -->
+<!-- <section class="pf-c-page__main-section">
+  <div class="pf-c-card">
+    <div class="pf-c-card__head">
+      <div class="pf-c-card__head-main">
+        <h1>{{movie.title}}</h1>
+      </div>
+    </div>
+    <div class="pf-c-card__header pf-c-title pf-m-md" id="card-action-example-1-check-label">Header</div>
+    <div class="pf-c-card__body">Body</div>
+    <div class="pf-c-card__footer">Footer</div>
+  </div>
+</section>
+
+<section class="pf-c-page__main-section">
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Available actions</h2>
+      <nav class="pf-c-nav" aria-label="Local">
+        <button class="pf-c-nav__scroll-button" aria-label="Scroll left">
+          <i class="fas fa-angle-left" aria-hidden="true"></i>
+        </button>
+        <ul class="pf-c-nav__tertiary-list">
+          <li class="pf-c-nav__item">
+            <a href="#" class="pf-c-nav__link pf-m-current" aria-current="page">Item 1</a>
+          </li>
+          <li class="pf-c-nav__item">
+            <a href="#" class="pf-c-nav__link">Item 2</a>
+          </li>
+          <li class="pf-c-nav__item">
+            <a href="#" class="pf-c-nav__link">Item 3</a>
+          </li>
+        </ul>
+        <button class="pf-c-nav__scroll-button" aria-label="Scroll right">
+          <i class="fas fa-angle-right" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section class="pf-c-page__main-section">
+
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying [collection name] list, as a table</h2>
+      <div class="pf-c-toolbar" id="page-layout-table-compact-toolbar-top">
+
+        <div class="pf-c-toolbar__action-group">
+          <button class="pf-c-button pf-m-primary" type="button">New [collection] item</button>
+          <button class="pf-c-button pf-m-secondary"><i class="fas fa-recycle"></i></button>
+        </div>
+
+      </div>
+      <table class="pf-c-table pf-m-compact pf-m-grid-lg" role="grid" aria-label="This is a compact table example" id="page-layout-table-compact-table">
+        <thead>
+          <tr role="row">
+
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader" scope="col">Name</th>
+            <th role="columnheader"></th>
+            <th role="columnheader"></th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+
+            <td role="cell" data-label="Position">My name</td>
+            <td role="cell" data-label="Location">My name</td>
+            <td role="cell" data-label="Last seen">My name</td>
+            <td role="cell" data-label="Numbers">My name</td>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a href="#"><i class="fas fa-edit"></i> edit</a>
+            </td>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a href="#"><i class="fas fa-trash"></i> delete</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pf-c-page__main-section">
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Editing / Creating [Collection] item</h2>
+      <form novalidate class="pf-c-form">
+        <div class="pf-c-form__group">
+          <div class="pf-l-grid pf-m-gutter">
+
+            <div class="pf-l-grid__item pf-m-6-col">
+              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
+                <span class="pf-c-form__label-text">Name</span>
+                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+              </label>
+              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
+            </div>
+
+            <div class="pf-l-grid__item pf-m-6-col">
+              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
+                <span class="pf-c-form__label-text">Name</span>
+                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+              </label>
+              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
+            </div>
+
+            <div class="pf-l-grid__item pf-m-6-col">
+              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
+                <span class="pf-c-form__label-text">Name</span>
+                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+              </label>
+              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
+            </div>
+
+            <div class="pf-l-grid__item pf-m-6-col">
+              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
+                <span class="pf-c-form__label-text">Name</span>
+                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+              </label>
+              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="pf-c-form__group pf-m-action">
+          <div class="pf-c-form__actions">
+            <button class="pf-c-button pf-m-primary" type="submit">Submit</button>
+            <button class="pf-c-button pf-m-secondary" type="reset">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="pf-c-page__main-section">
+  <pre>{{movie$ | async | json}}</pre>
+</section> -->
+
+
+<!-- after making the componnents -->
+
+<app-movie-summary [movie]="movie$ | async"></app-movie-summary>
+<app-movie-collection-actions [collections]="collections"></app-movie-collection-actions>
+<router-outlet></router-outlet>
+<!-- <app-movie-collection></app-movie-collection> -->

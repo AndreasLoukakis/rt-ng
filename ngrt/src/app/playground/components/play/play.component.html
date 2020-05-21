@@ -1,4 +1,57 @@
 <div class="pf-c-content">
-  <h1 class="pf-c-title pf-m-3xl">Play componnent</h1>
-  <app-child (childChanged)="onChildEvent($event)" [items]="myItems$ | async"></app-child>
+  <!-- <h1 class="pf-c-title pf-m-3xl">Play componnent</h1>
+  <app-child (childChanged)="onChildEvent($event)" [items]="myItems$ | async"></app-child> -->
+
+  <section>
+    <h1>Reactive Form</h1>
+
+    <form #formRefReactive (ngSubmit)="onSubmitReactive(formRef)" [formGroup]="myData">
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label">
+          <span class="pf-c-form__label-text">First Name</span>
+        </label>
+        <input class="pf-c-form-control" type="text"
+          formControlName="firstName" />
+          <p *ngIf="myData.get('firstName')?.errors?.required" class="pf-c-form__helper-text pf-m-error">This field is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label">
+          <span class="pf-c-form__label-text">Last Name</span>
+        </label>
+        <input class="pf-c-form-control" type="text"
+          formControlName="lastName" />
+      </div>
+
+      <button [disabled]="!myData.valid" class="pf-c-button pf-m-primary" type="submit">Submit form</button>
+    </form>
+  </section>
+
+  <section>
+    <h1>Template-driven Form</h1>
+
+    <!-- Angular applies some directives like formgroup behinnd the scene -->
+    <form #formRef="ngForm" (ngSubmit)="onSubmitTemplateBased(formRef)">
+        <p>
+            <label>First Name:</label>
+            <!-- Get a reference to the field with #name -->
+            <input type="text" name="firstName" #name
+                [(ngModel)]="user.firstName" required>
+        </p>
+        <pre>name ref is {{name}}</pre>
+        <p>
+            <label>Last Name:</label>
+            <input type="text" name="lastName"
+                [(ngModel)]="user.lastName" required>
+        </p>
+
+        <p>
+          <button [disabled]="!formRef.valid" class="pf-c-button pf-m-primary" type="submit">Submit form</button>
+        </p>
+        <pre>
+          {{formRef.value | json}}
+        </pre>
+    </form>
+  </section>
+
 </div>

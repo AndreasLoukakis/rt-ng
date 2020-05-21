@@ -1,7 +1,84 @@
-<div style="padding: 2em;background: white;margin: 2em;">
+<!-- <section class="pf-c-page__main-section" style="min-height:70vh">
+  <div>
 
-  <div class="pf-c-form__group pf-m-action">
-    <button (click)="login()" class="pf-c-button pf-m-primary pf-m-block" type="button">Log in</button>
+    <form class="pf-c-form">
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="username">
+          <span class="pf-c-form__label-text">Username</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input class="pf-c-form-control" type="text" name="username" aria-invalid="true" />
+        <p class="pf-c-form__helper-text pf-m-error">Username is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="password">
+          <span class="pf-c-form__label-text">Password</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input class="pf-c-form-control" type="password" name="password" aria-invalid="true" />
+        <p class="pf-c-form__helper-text pf-m-error">Password is required</p>
+      </div>
+
+      <div class="pf-c-form__group pf-m-action">
+        <button class="pf-c-button pf-m-primary pf-m-block" type="submit">Log in</button>
+      </div>
+
+    </form>
+
   </div>
+</section> -->
 
-</div>
+
+<!-- template driven -->
+
+<section class="pf-c-page__main-section" style="min-height:70vh">
+  <div>
+
+    <!-- use outside of a form -->
+    <!-- <div class="pf-c-form__group">
+      <label class="pf-c-form__label" for="othernname">
+        <span class="pf-c-form__label-text">Username</span>
+        <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+      </label>
+      <input class="pf-c-form-control" type="text"
+        formControl="othername" aria-invalid="true" />
+      <p class="pf-c-form__helper-text pf-m-error">Other name is required</p>
+    </div> -->
+
+    <!-- form needs at least formgroup and formControl -->
+    <form [formGroup]="formData" (ngSubmit)="login()" class="pf-c-form">
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="username">
+          <span class="pf-c-form__label-text">Username</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input formControlName="username" class="pf-c-form-control" type="text"
+          [attr.aria-invalid]="formData.get('username')?.errors" />
+        <p *ngIf="formData.get('username')?.errors?.required" class="pf-c-form__helper-text pf-m-error">Username is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="password">
+          <span class="pf-c-form__label-text">Password</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input class="pf-c-form-control" type="password"
+          formControlName="password" [attr.aria-invalid]="formData.get('password')?.errors" />
+        <p *ngIf="formData.get('password')?.errors?.required" class="pf-c-form__helper-text pf-m-error">Password is required</p>
+      </div>
+
+      <div class="pf-c-form__group pf-m-action">
+        <button [disabled]="!formData.valid" class="pf-c-button pf-m-primary pf-m-block" type="submit">Log in</button>
+      </div>
+
+    </form>
+
+    <div>
+      <pre>{{formData.value | json}}</pre>
+    </div>
+
+  </div>
+</section>

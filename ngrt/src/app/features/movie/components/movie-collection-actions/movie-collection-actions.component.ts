@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MovieCollectionActionsComponent implements OnInit {
 
-  @Input() actions: string[];
+  @Input() collections: string[];
   constructor() { }
 
   ngOnInit(): void {

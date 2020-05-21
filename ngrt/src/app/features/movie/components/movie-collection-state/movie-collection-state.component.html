@@ -2,16 +2,16 @@
 
   <div class="pf-c-card">
     <div class="pf-c-card__body">
-      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying  {{collection$ | async}} list, as a table</h2>
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying {{ (collection$ | async )}} list, as a table</h2>
       <div class="pf-c-toolbar" id="page-layout-table-compact-toolbar-top">
 
         <div class="pf-c-toolbar__action-group">
-          <button class="pf-c-button pf-m-primary" type="button">New {{collection$ | async}} item</button>
-          <button #recycleBtn (click)="refresh()" class="pf-c-button pf-m-secondary"><i class="fas fa-recycle"></i></button>
+          <button class="pf-c-button pf-m-primary" (click)="createItem()" type="button">New {{ (collection$ | async )}} item</button>
+          <button class="pf-c-button pf-m-secondary" (click)="refresh()"><i class="fas fa-recycle"></i></button>
         </div>
 
       </div>
-      <table class="pf-c-table pf-m-compact pf-m-grid-lg" role="grid" aria-label="This is a compact table example" id="page-layout-table-compact-table">
+      <table *ngIf="props$ | async" class="pf-c-table pf-m-compact pf-m-grid-lg" role="grid" aria-label="This is a compact table example" id="page-layout-table-compact-table">
         <thead>
           <tr role="row">
 
@@ -24,13 +24,13 @@
         <tbody role="rowgroup">
           <tr *ngFor="let item of items$ | async" role="row">
 
-            <td *ngFor="let prop of props$ | async" role="cell" data-label="Position">{{item[prop.value]}}</td>
+            <td *ngFor="let prop of props$ | async" role="cell">{{item[prop.value]}}</td>
 
-            <td  class="pf-c-table__icon" role="cell" data-label="Icon">
-              <a (click)="edit(item)" ><i class="fas fa-edit"></i> edit</a>
+            <td class="pf-c-table__icon" role="cell" data-label="Icon">
+              <a (click)="editItem(item)"><i class="fas fa-edit"></i> edit</a>
             </td>
             <td class="pf-c-table__icon" role="cell" data-label="Icon">
-              <a href="#"><i class="fas fa-trash"></i> delete</a>
+              <a (click)="delete(item)"><i class="fas fa-trash"></i> delete</a>
             </td>
           </tr>
 
@@ -39,12 +39,12 @@
     </div>
   </div>
 </section>
-
 <app-movie-collection-item-editor
+  (itemSave)="onSaveItem($event)"
   (itemCancel)="onCancel()"
-  (itemSave)="onItemSave($event)"
   [item$]="selectedItem$"
-  [props$]="props$"
   [type$]="collection$"
-  *ngIf="showModal">
+  [props$]="props$"
+  *ngIf="showEditor">
 </app-movie-collection-item-editor>
+

@@ -1,54 +1,38 @@
-<section class="pf-c-page__main-section">
-  <div class="pf-c-card">
-    <div class="pf-c-card__body">
+<div class="pf-c-backdrop">
+  <div class="pf-l-bullseye">
+    <div class="pf-c-modal-box pf-m-lg" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title" aria-describedby="modal-lg-description">
+      <button (click)="cancel()" class="pf-c-button pf-m-plain" type="button" aria-label="Close dialog">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
       <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Editing / Creating [Collection] item</h2>
-      <form novalidate class="pf-c-form">
-        <div class="pf-c-form__group">
-          <div class="pf-l-grid pf-m-gutter">
+      <div class="pf-c-modal-box__body">
 
-            <div class="pf-l-grid__item pf-m-6-col">
-              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
-                <span class="pf-c-form__label-text">Name</span>
-                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
-              </label>
-              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
+        <form [formGroup]="formData"  class="pf-c-form">
+          <div class="pf-c-form__group">
+            <div class="pf-l-grid pf-m-gutter">
+
+              <ng-container *ngFor="let prop of props$ | async">
+                <div class="pf-l-grid__item pf-m-6-col">
+                  <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
+                    <span class="pf-c-form__label-text">{{prop.label}}</span>
+                    <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+                  </label>
+                  <input class="pf-c-form-control" type="text"
+                  [formControlName]="prop.value"
+                     />
+                  <p *ngIf="formData.get(prop.value)?.errors?.required" class="pf-c-form__helper-text pf-m-error">{{prop.label}} is required</p>
+                  <p *ngIf="formData.get(prop.value)?.errors?.noGreek" class="pf-c-form__helper-text pf-m-error">Greek chars are not allowed</p>
+                </div>
+              </ng-container>
+
             </div>
-
-            <div class="pf-l-grid__item pf-m-6-col">
-              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
-                <span class="pf-c-form__label-text">Name</span>
-                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
-              </label>
-              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
-            </div>
-
-            <div class="pf-l-grid__item pf-m-6-col">
-              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
-                <span class="pf-c-form__label-text">Name</span>
-                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
-              </label>
-              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
-            </div>
-
-            <div class="pf-l-grid__item pf-m-6-col">
-              <label class="pf-c-form__label" for="vertical-align-labels-vertical-form-name">
-                <span class="pf-c-form__label-text">Name</span>
-                <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
-              </label>
-              <input class="pf-c-form-control" type="text" name="vertical-align-labels-vertical-form-name" required />
-            </div>
-
           </div>
-
-        </div>
-
-        <div class="pf-c-form__group pf-m-action">
-          <div class="pf-c-form__actions">
-            <button class="pf-c-button pf-m-primary" type="submit">Submit</button>
-            <button class="pf-c-button pf-m-secondary" type="reset">Cancel</button>
-          </div>
-        </div>
-      </form>
+        </form>
+        <pre>{{formData.value | json}}</pre>
+      </div>
+      <footer class="pf-c-modal-box__footer pf-m-align-left">
+        <button [disabled]="formData.invalid"  class="pf-c-button pf-m-primary" type="button">Save</button>
+        <button (click)="cancel()" class="pf-c-button pf-m-link" type="button">Cancel</button>
+      </footer>
     </div>
   </div>
-</section>

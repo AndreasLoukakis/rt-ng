@@ -19,6 +19,10 @@ export class MovieCollectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    // we still need: collection and props.
+    // we could "tap" in and assign them, or...
+
     this.items$ = this.route.params.pipe(
       map(props => (props.collection)),
       mergeMap(collection => {

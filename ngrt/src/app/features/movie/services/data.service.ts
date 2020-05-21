@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
+import { Observable, forkJoin, of } from 'rxjs';
 import { Movie } from './../../../shared/interfaces';
 
 @Injectable({
@@ -13,25 +13,24 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getMoviesAsObservable(): Observable<Movie[]> {
-    return this.http.get<MovieResponse>(`${this.apiURL}films`).pipe(
-      map(response => response.results)
-    )
-  }
-
-  // https://developers.google.com/web/updates/2015/03/introduction-to-fetch
-  getMoviesAsPromise(): Promise<Movie[]> {
-    return fetch(`${this.apiURL}films`)
-      .then(response => response.json())
-      .then(data => data.results);
-  }
-
   getByUrl<T>(url: string): Observable<T> {
     return this.http.get<any>(url);
   }
 
   getMovie(id: string): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiURL}films/${id}`);
+  }
+
+  deleteItem(itemUrl: string) {
+    return of(itemUrl)
+  }
+
+  createItem(item: any) {
+    return of(item);
+  }
+
+  getCollection(urls: string[]): Observable<any[]> {
+    return forkJoin(urls.map(url => this.getByUrl(url)))
   }
 
   getCollectionProps(collection: string) {
@@ -41,13 +40,14 @@ export class DataService {
 
     const collectionsMap = {
       characters: [
-        {value: 'name', label: 'Name'},
+        {value: 'name', label: 'Name', validations: ['required']},
         {value: 'birth_year', label: 'Birth Year'},
         {value: 'eye_color', label: 'Eye Color'},
         {value: 'gender', label: 'Gender'},
         {value: 'hair_color', label: 'Hair Color'},
-        {value: 'height', label: 'Height'},
-        {value: 'skin_color', label: 'Skin'},
+        {value: 'height', label: 'Height', validations: ['required']},
+        { value: 'skin_color', label: 'Skin' },
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       planets: [
         {value: 'name', label: 'Name', validations: ['required']},
@@ -57,21 +57,26 @@ export class DataService {
         {value: 'climate', label: 'Climate'},
         {value: 'gravity', label: 'Gravity', validations: ['required']},
         {value: 'terrain', label: 'Terrain'},
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       starships: [
         {value: 'name', label: 'Name'},
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       vehicles: [
         {value: 'name', label: 'Name'},
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       species: [
         {value: 'name', label: 'Name'},
+        { value: 'url', label: 'ID', validations: ['required']}
       ]
 
     }
 
     return collectionsMap[collection] ?? [];
   }
+
 }
 
 export interface MovieResponse {

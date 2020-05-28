@@ -64,9 +64,9 @@
       <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Editing / Creating [Collection] item</h2>
       <div class="pf-c-modal-box__body">
 
-        <form [formGroup]="formData" class="pf-c-form">
+        <form *ngIf="formData && formData.get('name')" [formGroup]="formData" class="pf-c-form">
           <div class="pf-c-form__group">
-            <div *ngIf="formData" class="pf-l-grid pf-m-gutter">
+            <div class="pf-l-grid pf-m-gutter">
 
               <ng-container *ngFor="let prop of props$ | async">
                 <div class="pf-l-grid__item pf-m-6-col">
@@ -76,16 +76,18 @@
                   </label>
                   <input [formControlName]="prop.value" class="pf-c-form-control" type="text" />
                   <p *ngIf="formData.get(prop.value)?.errors?.required" class="pf-c-form__helper-text pf-m-error">{{prop.label}} is required</p>
+                  <p *ngIf="formData.get(prop.value)?.errors?.noGreek" class="pf-c-form__helper-text pf-m-error">Greek characters not allowed</p>
                 </div>
               </ng-container>
 
             </div>
           </div>
         </form>
+        <pre>{{formData.value | json}}</pre>
 
       </div>
       <footer class="pf-c-modal-box__footer pf-m-align-left">
-        <button (click)="save(formData.value)" [disabled]="!formData.valid" class="pf-c-button pf-m-primary" type="button">Save</button>
+        <button (click)="save(formData.value)" [disabled]="formData && !formData.valid" class="pf-c-button pf-m-primary" type="button">Save</button>
         <button (click)="cancel()" class="pf-c-button pf-m-link" type="button">Cancel</button>
       </footer>
     </div>

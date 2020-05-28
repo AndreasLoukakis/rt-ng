@@ -2,11 +2,11 @@
 
   <div class="pf-c-card">
     <div class="pf-c-card__body">
-      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying {{collection$ | async}} list, as a table</h2>
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Displaying {{ (collection$ | async )}} list, as a table</h2>
       <div class="pf-c-toolbar" id="page-layout-table-compact-toolbar-top">
 
         <div class="pf-c-toolbar__action-group">
-          <button class="pf-c-button pf-m-primary" type="button">New {{collection$ | async}} item</button>
+          <button class="pf-c-button pf-m-primary" (click)="createItem()" type="button">New {{ (collection$ | async )}} item</button>
           <button class="pf-c-button pf-m-secondary" (click)="refresh()"><i class="fas fa-recycle"></i></button>
         </div>
 
@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody role="rowgroup">
-          <tr *ngFor="let item of refreshed$ | async" role="row">
+          <tr *ngFor="let item of items$ | async" role="row">
 
             <td *ngFor="let prop of props$ | async" role="cell">{{item[prop.value]}}</td>
 
@@ -47,6 +47,4 @@
   [props$]="props$"
   *ngIf="showEditor">
 </app-movie-collection-item-editor>
-<pre>
-  {{selectedItem$  | async | json}}
-</pre>
+

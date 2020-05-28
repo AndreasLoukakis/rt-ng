@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovieCollectionComponent } from './movie-collection.component';
+import { MovieCollectionComponent } from './movie-collection.component-redux';
 
 describe('MovieCollectionComponent', () => {
   let component: MovieCollectionComponent;

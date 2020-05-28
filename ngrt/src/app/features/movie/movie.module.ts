@@ -8,10 +8,11 @@ import { MovieCollectionComponent } from './components/movie-collection/movie-co
 import { MovieCollectionItemEditorComponent } from './components/movie-collection-item-editor/movie-collection-item-editor.component';
 import { MovieCollectionActionsComponent } from './components/movie-collection-actions/movie-collection-actions.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MovieCollectionReduxComponent } from './components/movie-collection-redux/movie-collection-redux.component';
 
 
 @NgModule({
-  declarations: [MovieComponent, MovieSummaryComponent, MovieCollectionComponent, MovieCollectionItemEditorComponent, MovieCollectionActionsComponent],
+  declarations: [MovieComponent, MovieSummaryComponent, MovieCollectionComponent, MovieCollectionItemEditorComponent, MovieCollectionActionsComponent, MovieCollectionReduxComponent],
   imports: [
     CommonModule,
     MovieRoutingModule,

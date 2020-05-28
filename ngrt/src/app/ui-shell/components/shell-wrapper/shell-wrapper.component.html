@@ -3,7 +3,7 @@
   <app-sidebar></app-sidebar>
   <app-main></app-main>
 </div>
-<ng-container *ngIf="(inTransit$ | async).size">
+<ng-container *ngIf="(inTransit$ | async)?.size">
   <div class="pf-c-backdrop">
     <div class="pf-u-text-align-center">
       <div class="loader">

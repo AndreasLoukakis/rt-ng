@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { StateService, ShellState } from './../../services/state.service';
+import { StateService } from './../../services/state.service';
 
 @Component({
   selector: 'app-shell-wrapper',
   templateUrl: './shell-wrapper.component.html',
-  styleUrls: ['./shell-wrapper.component.scss']
+  styleUrls: ['./shell-wrapper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellWrapperComponent implements OnInit {
 

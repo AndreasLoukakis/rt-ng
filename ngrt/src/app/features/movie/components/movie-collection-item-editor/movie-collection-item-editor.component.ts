@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap, catchError } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-collection-item-editor',
@@ -27,7 +27,7 @@ export class MovieCollectionItemEditorComponent implements OnInit {
       ([item, props]) => {
         // create an object formated for fb
         const fbData = props.reduce((all, cur) => {
-          const itemValidations = [];
+          const itemValidations = [this.noGreekCharacters];
           if (cur.validations) {
             cur.validations.map(v => {
               if (Validators[v]) itemValidations.push(Validators[v])
@@ -38,8 +38,33 @@ export class MovieCollectionItemEditorComponent implements OnInit {
         }, {})
 
         this.formData = this.fb.group(fbData);
+
+        // react to form or specific input changes
+        // and do things normally done via a directive
+        // this.formData.valueChanges.subscribe( ... )
+        this.formData.get('name')?.valueChanges.subscribe(
+          val => {
+            if (val === 'kostas' || val === 'konstantina') {
+              window.alert('xronia polla!!')
+            }
+            if (val === 'addField') {
+              this.formData.addControl('foo', new FormControl('init val'))
+            }
+          }
+        )
       }
     )
+  }
+
+  // Add some custom validation, or put them in a seperate file
+  // and add them to angular Validators via the injection token
+  // https://angular.io/api/forms/NG_VALIDATORS
+  noGreekCharacters(c: FormControl) {
+    return !/[α-ωΑΩ]/.test(c.value) ? null : {
+      noGreek: {
+        valid: false
+      }
+    };
   }
 
   save(item) {

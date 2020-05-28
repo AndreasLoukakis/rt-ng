@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { Observable, forkJoin, BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { map, mergeMap, find, filter, flatMap, merge, shareReplay, share } from 'rxjs/operators';
 
-import { DataService } from './../../services/data.service';
-import { StateService, MovieActions, CollectionsState } from './../../services/state.service';
-import { Movie } from './../../../../shared/interfaces';
+import { DataService } from '../../services/data.service';
+
 
 @Component({
   selector: 'app-movie-collection',
@@ -14,41 +13,57 @@ import { Movie } from './../../../../shared/interfaces';
 })
 export class MovieCollectionComponent implements OnInit {
 
-  movie$: Observable<Movie>;
   items$: Observable<BaseCollectionItem[]>;
   collection$: Observable<string>;
   props$: Observable<{ value: string, label: string, validations?: string[] }[]>;
 
-  createMode: boolean = false;
   showEditor: boolean = false;
+  deletedItems: string[] = [];
 
   selectedItem$: Observable<BaseCollectionItem>;
+
+  refreshed$: Observable<BaseCollectionItem[]>;
 
   private refresh$: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(
     private route: ActivatedRoute,
-    private data: DataService,
-    private store: StateService
+    private data: DataService
   ) { }
 
   ngOnInit(): void {
 
-    this.route.params.pipe(
-      tap(params => {
-        if (!params || !params.collection) return;
+    this.collection$ = this.route.params.pipe(
+      map(params => params.collection)
+    )
 
-        this.movie$ = this.store.select<Movie>('movie');
-        this.items$ = this.store.select(`collections.${params.collection}.items`);
-        this.props$ = this.store.select(`collections.${params.collection}.props`);
-        this.collection$ = this.store.select('selectedCollection');
+    this.props$ = this.collection$.pipe(
+      map(collection => this.data.getCollectionProps(collection))
+    )
 
-        this.store.actions.emit({
-          type: MovieActions.GET_MOVIE_COLLECTION,
-          payload: params.collection
-        })
-      })
-    ).subscribe()
+    const movie$ = this.route.parent.params.pipe(
+      map(parentParams => parentParams.id),
+      mergeMap(movieID => this.data.getMovie(movieID)),
+      // step 2
+      shareReplay()
+    )
+
+    this.items$ = movie$.pipe(
+      mergeMap(movie => this.collection$.pipe(
+        map(collection => movie[collection]
+          // step 2, to handle deleted items
+          .filter(url => !this.deletedItems.includes(url))
+        )
+      )),
+      mergeMap(
+        urls => forkJoin(urls.map(url => this.data.getByUrl(url))) as Observable<BaseCollectionItem[]>
+      )
+    )
+
+    // step 2
+    this.refreshed$ = this.refresh$.pipe(
+      mergeMap(_ => this.items$)
+    )
 
   }
 
@@ -57,22 +72,8 @@ export class MovieCollectionComponent implements OnInit {
     this.showEditor = true;
   }
 
-  createItem() {
-    this.createMode = true;
-    this.selectedItem$ = this.props$.pipe(
-      map(this.createObjectFromProps)
-    )
-    this.showEditor = true;
-  }
-
   onSaveItem(item) {
-    const action = this.createMode ?
-      { type: MovieActions.CREATE_COLLECTION_ITEM, payload: item } :
-      { type: MovieActions.UPDATE_COLLECTION_ITEM, payload: item };
 
-    this.store.actions.emit(action);
-    this.createMode = false;
-    this.showEditor = false;
   }
 
   onCancel() {
@@ -80,18 +81,12 @@ export class MovieCollectionComponent implements OnInit {
   }
 
   delete(item: any) {
-    this.store.actions.emit({ type: MovieActions.DELETE_COLLECTION_ITEM, payload: item.url})
+    this.deletedItems.push(item.url);
+    this.refresh$.next('');
   }
 
   refresh() {
     this.refresh$.next('');
-  }
-
-  createObjectFromProps(props: { value: string, label: string, validations?: string[] }[]) {
-    return props.reduce((all, cur) => {
-      all[cur.value] = '';
-      return all;
-    }, {}) as BaseCollectionItem
   }
 
 }

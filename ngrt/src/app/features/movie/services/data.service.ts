@@ -47,7 +47,7 @@ export class DataService {
         {value: 'hair_color', label: 'Hair Color'},
         {value: 'height', label: 'Height', validations: ['required']},
         { value: 'skin_color', label: 'Skin' },
-        { value: 'url', label: 'ID'}
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       planets: [
         {value: 'name', label: 'Name', validations: ['required']},
@@ -57,19 +57,19 @@ export class DataService {
         {value: 'climate', label: 'Climate'},
         {value: 'gravity', label: 'Gravity', validations: ['required']},
         {value: 'terrain', label: 'Terrain'},
-        { value: 'url', label: 'ID'}
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       starships: [
         {value: 'name', label: 'Name'},
-        { value: 'url', label: 'ID'}
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       vehicles: [
         {value: 'name', label: 'Name'},
-        { value: 'url', label: 'ID'}
+        { value: 'url', label: 'ID', validations: ['required']}
       ],
       species: [
         {value: 'name', label: 'Name'},
-        { value: 'url', label: 'ID'}
+        { value: 'url', label: 'ID', validations: ['required']}
       ]
 
     }

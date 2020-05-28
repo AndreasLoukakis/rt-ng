@@ -1,0 +1,22 @@
+<p>child works!</p>
+
+<div>
+  <h3>Array iteration: </h3>
+  <ul>
+    <ng-container *ngFor="let item of data">
+      <li *ngIf="item !== 'GEorge'" >{{item}}</li>
+    </ng-container>
+
+  </ul>
+</div>
+<button (click)="onClick()" class="pf-c-button pf-m-secondary" type="button">Emit event</button>
+
+<hr>
+<input class="pf-c-form-control"
+   type="text" value="Readonly" />
+
+   <hr>
+<h2>Data from service</h2>
+<pre>
+  {{dataFromService$ | async | json}}
+</pre>

@@ -1,0 +1,18 @@
+<!-- <h1>These are observables</h1>
+<app-observable-list></app-observable-list>
+<hr>
+<h1>These are promises</h1>
+<app-promise-list></app-promise-list> -->
+<ul class="pf-c-data-list" *ngIf="items$ | async as items; else loading">
+  <app-list-item *ngFor="let item of items" [movie]="item"></app-list-item>
+</ul>
+
+<ng-template #loading>
+  <span class="pf-c-spinner" role="progressbar" aria-valuetext="Loading...">
+    <span class="pf-c-spinner__clipper"></span>
+    <span class="pf-c-spinner__lead-ball"></span>
+    <span class="pf-c-spinner__tail-ball"></span>
+  </span>
+</ng-template>
+
+<router-outlet></router-outlet>

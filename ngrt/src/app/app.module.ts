@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { UiShellModule } from './ui-shell/ui-shell.module';
 import { PlaygroundModule } from './playground/playground.module';
 
 @NgModule({
@@ -12,6 +12,7 @@ import { PlaygroundModule } from './playground/playground.module';
     AppComponent
   ],
   imports: [
+    UiShellModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

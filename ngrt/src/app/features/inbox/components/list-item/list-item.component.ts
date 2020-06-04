@@ -11,6 +11,9 @@ export class ListItemComponent implements OnInit {
   @Input() movie: Movie;
   showDetails: boolean = false;
 
+  previewCollections: string[] = ['species', 'starships', 'vehicles', 'characters', 'planets'];
+  dropDownOpen = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +27,10 @@ export class ListItemComponent implements OnInit {
     const parts = url.split('/');
     // to handle empty string, if url ends in /
     return parts.pop() || parts.pop();
+  }
+
+  toggleDropdown() {
+    this.dropDownOpen = !this.dropDownOpen;
   }
 
 }

@@ -3,9 +3,26 @@
 <hr>
 <h1>These are promises</h1>
 <app-promise-list></app-promise-list> -->
-<ul class="pf-c-data-list" *ngIf="items$ | async as items; else loading">
+<!-- <ul class="pf-c-data-list" *ngIf="items$ | async as items; else loading">
   <app-list-item *ngFor="let item of items" [movie]="item"></app-list-item>
-</ul>
+</ul> -->
+
+<!-- <router-outlet></router-outlet> -->
+
+<div #drawer class="pf-c-drawer pf-m-inline-on-2xl" [ngClass]="{'pf-m-expanded': subRouteActive$ | async}">
+  <div class="pf-c-drawer__main">
+    <div class="pf-c-drawer__content pf-m-no-background">
+      <div class="pf-c-drawer__body pf-m-padding">
+        <ul *ngIf="items$ | async as movies;else loading;" class="pf-c-data-list" role="list">
+          <app-list-item *ngFor="let movie of movies" [movie]="movie"></app-list-item>
+        </ul>
+      </div>
+    </div>
+    <div class="pf-c-drawer__panel" aria-expanded="true">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
 
 <ng-template #loading>
   <span class="pf-c-spinner" role="progressbar" aria-valuetext="Loading...">
@@ -15,4 +32,3 @@
   </span>
 </ng-template>
 
-<router-outlet></router-outlet>

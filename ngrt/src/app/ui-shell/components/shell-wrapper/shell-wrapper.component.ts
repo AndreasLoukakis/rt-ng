@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from './../../services/state.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shell-wrapper',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShellWrapperComponent implements OnInit {
 
-  constructor() { }
+  inTransit$: Observable<Set<string>>;
+  constructor(
+    private store: StateService
+  ) { }
 
   ngOnInit(): void {
+    this.inTransit$ = this.store.state$.pipe(
+      map(state => state.inTransit)
+    )
   }
 
 }

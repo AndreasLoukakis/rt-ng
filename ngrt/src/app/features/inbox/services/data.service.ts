@@ -29,6 +29,14 @@ export class DataService {
       );
   }
 
+  getByUrl<T>(url: string): Observable<T> {
+    return this.http.get<any>(url);
+  }
+
+  getMovie(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiURL}films/${id}`);
+  }
+
 
 
 }

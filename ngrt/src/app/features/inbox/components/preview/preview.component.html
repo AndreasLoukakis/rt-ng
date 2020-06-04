@@ -1,1 +1,45 @@
-<p>preview works!</p>
+<div class="pf-c-drawer__body">
+  <div class="pf-l-flex pf-m-column">
+    <div class="pf-l-flex__item">
+      <div class="pf-c-drawer__head">
+        <div class="pf-c-drawer__actions">
+          <div class="pf-c-drawer__close">
+            <a [routerLink]="['/inbox']"  class="pf-c-button pf-m-plain" aria-label="Close drawer panel">
+              <i class="fas fa-times" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <h2 class="pf-c-title pf-m-lg" id="master-detail-panel-body-padding-drawer-label">{{movieTitle}}: {{collection}}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pf-c-drawer__body">
+  <div class="pf-l-flex pf-m-column pf-m-space-items-lg">
+    <div class="pf-l-flex__item">
+      <ul class="pf-c-list" *ngIf="items$  | async as items;">
+        <li *ngFor="let item of items; let i = index;">
+          <!-- {{++i}}: {{item.name}}, born: {{item.birth_year}}, gender: {{item.gender}} -->
+          <ng-container *ngTemplateOutlet="selectTemplate(); context: {item: item, i: i }"></ng-container>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<ng-template let-item="item" let-i="i" #species>
+  <strong>Name</strong>: {{item.name}}, <strong>classification</strong>: {{item.classification}}, <strong>designation</strong>: {{item.designation}}
+</ng-template>
+<ng-template let-item="item" let-i="i" #starships>
+  <strong>Name</strong>: {{item.name}}, <strong>model</strong>: {{item.model}}, <strong>manufacturer</strong>: {{item.manufacturer}}
+</ng-template>
+<ng-template let-item="item" let-i="i" #vehicles>
+  <strong>Name</strong>: {{item.name}}, <strong>model</strong>: {{item.model}}, <strong>manufacturer</strong> : {{item.manufacturer}}
+</ng-template>
+<ng-template let-item="item" let-i="i" #characters>
+  <strong>Name</strong>: {{item.name}}, <strong>born</strong>: {{item.birth_year}}, <strong>gender</strong>: {{item.gender}}
+</ng-template>
+<ng-template let-item="item" let-i="i" #planets>
+  <strong>Name</strong>: {{item.name}}, <strong>rotation period</strong>: {{item.rotation_period}}, <strong>orbital period</strong>: {{item.orbital_period}}
+</ng-template>

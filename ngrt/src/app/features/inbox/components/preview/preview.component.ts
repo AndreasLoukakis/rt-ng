@@ -40,6 +40,28 @@ export class PreviewComponent implements OnInit, OnDestroy {
     this.movieId = this.route.snapshot.paramMap.get('id');
     console.log(this.movieId);
 
+    // phase a, will not work when changing dynamic id
+    this.items$ = this.data.getMovie(this.movieId).pipe(
+      map(movie => {
+        this.movieTitle = movie.title;
+        return movie;
+      }),
+      mergeMap((movie) => forkJoin(
+        movie[this.collection].map(url => this.data.getByUrl(url))
+      ))
+    );
+
+    // phase b, dynamic ids
+    this.items$ = this.route.params.pipe(
+      map(params => params.id),
+      mergeMap(id => this.data.getMovie(id).pipe(map(movie => {
+        this.movieTitle = movie.title;
+        return movie;
+      }))),
+      mergeMap((movie) => forkJoin(movie[this.collection].map(url => this.data.getByUrl<People>(url)))),
+    );
+
+    // phase c, dynamic collection param
     this.items$ = this.route.params.pipe(
       map(params => {
         Promise.resolve().then(_ => this.collection = params.collection);
@@ -58,7 +80,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
   }
 
   selectTemplate() {
-    return this[this.collection + 'Tpl']
+    return this[this.collection + 'Tpl'];
   }
 
 }

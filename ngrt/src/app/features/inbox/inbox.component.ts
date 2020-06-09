@@ -26,7 +26,7 @@ export class InboxComponent implements OnInit {
   ngOnInit(): void {
     this.items$ = this.dataService.getMoviesAsObservable();
     this.subRouteActive$ = this.state.state$.pipe(map(s => s.subRouteActive))
-    this.uiState.update({mainTitle: 'Inbox'})
+    this.uiState.update({ mainTitle: 'Inbox' });
   }
 
 }

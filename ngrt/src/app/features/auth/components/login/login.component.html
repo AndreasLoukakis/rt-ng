@@ -1,0 +1,50 @@
+<section class="pf-c-page__main-section" style="min-height:70vh">
+  <div>
+
+    <!-- <label class="pf-c-form__label" for="othernname">
+      <span class="pf-c-form__label-text">Username</span>
+      <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+    </label>
+    <input class="pf-c-form-control" type="text"
+      formControl="lastName"  />
+    <p class="pf-c-form__helper-text pf-m-error">Other name is required</p> -->
+
+    <form [formGroup]="myFormData" (ngSubmit)="onLogin()" class="pf-c-form">
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="username">
+          <span class="pf-c-form__label-text">Username</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input
+          formControlName="username"
+          class="pf-c-form-control"
+          type="text" aria-invalid="true" />
+        <p *ngIf="myFormData.get('username')?.errors?.required" class="pf-c-form__helper-text pf-m-error">Username is required</p>
+      </div>
+
+      <div class="pf-c-form__group">
+        <label class="pf-c-form__label" for="password">
+          <span class="pf-c-form__label-text">Password</span>
+          <span class="pf-c-form__label-required" aria-hidden="true">&#42;</span>
+        </label>
+        <input class="pf-c-form-control"
+          formControlName="password"
+        type="text"  aria-invalid="true" />
+        <p class="pf-c-form__helper-text pf-m-error">Password is required</p>
+      </div>
+
+      <div class="pf-c-form__group pf-m-action">
+        <button [disabled]="myFormData.invalid" class="pf-c-button pf-m-primary pf-m-block" type="submit">Log in</button>
+      </div>
+
+    </form>
+
+    <pre>{{myFormData.value | json }}</pre>
+    <hr>
+    <pre>{{myFormData.get('username')?.errors | json}}</pre>
+
+
+
+  </div>
+</section>

@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { UiShellModule } from './ui-shell/ui-shell.module';
 import { PlaygroundModule } from './playground/playground.module';
 
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +20,8 @@ import { PlaygroundModule } from './playground/playground.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PlaygroundModule
+    PlaygroundModule,
+    SharedModule
   ],
   providers: [
     {

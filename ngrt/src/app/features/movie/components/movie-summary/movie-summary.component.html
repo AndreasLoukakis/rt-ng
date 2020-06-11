@@ -1,0 +1,18 @@
+<section class="pf-c-page__main-section">
+  <div class="pf-c-card">
+    <div class="pf-c-card__head">
+      <div class="pf-c-card__head-main">
+        <h1>Movie title: <strong>{{movie?.title}}</strong></h1>
+      </div>
+    </div>
+    <div class="pf-c-card__body">
+      <i class="fas fa-video"></i> {{movie?.director}},
+      <i class="fas fa-money-bill"></i> {{movie?.producer}},
+      <i class="fas fa-calendar-alt"></i> {{movie?.release_date}},
+      <i class="fas fa-users"></i> {{movie?.characters.length}},
+      <i class="fas fa-space-shuttle"></i> {{movie?.starships.length}},
+      <i class="fas fa-truck-monster"></i> {{movie?.vehicles.length}}
+    </div>
+    <div class="pf-c-card__footer">May the forms be with you</div>
+  </div>
+</section>

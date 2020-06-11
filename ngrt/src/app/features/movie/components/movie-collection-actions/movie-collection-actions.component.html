@@ -1,0 +1,17 @@
+<section class="pf-c-page__main-section">
+  <div class="pf-c-card">
+    <div class="pf-c-card__body">
+      <h2 class="pf-c-title pf-m-2xl ws-title ws-h2">Available actions</h2>
+      <nav class="pf-c-nav" aria-label="Local">
+
+        <ul class="pf-c-nav__tertiary-list">
+          <li *ngFor="let item of collections" class="pf-c-nav__item">
+            <a [routerLink]="[item]" routerLinkActive="pf-m-current"  class="pf-c-nav__link" aria-current="page">{{item}}</a>
+          </li>
+
+        </ul>
+
+      </nav>
+    </div>
+  </div>
+</section>

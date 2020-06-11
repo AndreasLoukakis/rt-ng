@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     console.log(this.myFormData.value)
-    // this.auth.login();
-    // this.router.navigate([this.returnTo]);
+    this.auth.login();
+    this.router.navigate([this.returnTo]);
   }
 
   getData() {
